@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<svg viewBox="0 0 500 128" width="500" height="128" xmlns="http://www.w3.org/2000/svg">
+    <style>
+      .kyberchod { font: bold 4em courier, monospace; fill: white; }
+          .hin { font: bold 2em courier, monospace; fill: #aabbcc; }
+    </style>
+    <!--<path d="M64,0 a64,64 0 0,0 0,128" fill="black"/>-->
+    <!--<path d="M64,0 a64,64 0 0,1 0,128" fill="black"/>-->
+    <a href="https://www.kyberchod.cz/">
+        <rect x="0" y="0" width="500" height="128" stroke-width="0" stroke="black" fill="#223344"/>
+        <path d="M40,24 v48 h-16 v24 h40 v-72 z" stroke-width="0" fill="#99ff33"/>
+        <path d="M104,24 v48 h16 v24 h-40 v-72 z" stroke-width="0" fill="#99ff33"/>
+        <text x="128" y="64" class="kyberchod">KyberChod</text>
+        <text x="192" y="96" class="hin">Hint se hukáže!</text>
+    </a>
+</svg>

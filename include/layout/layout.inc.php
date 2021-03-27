@@ -23,11 +23,12 @@ function head($title = '') {
     <title>',($title ? htmlspecialchars($title) . ' : ' : '') , Config::get('MELLIVORA_CONFIG_SITE_NAME'), ' - ', Config::get('MELLIVORA_CONFIG_SITE_SLOGAN'),'</title>
     <meta name="description" content="',Config::get('MELLIVORA_CONFIG_SITE_DESCRIPTION'),'">
     <meta name="author" content="">
-    <link rel="icon" href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'img/favicon.png" type="image/png" />
+    <link rel="icon" href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'img/kyberchod.png" type="image/png" />
 
     <!-- CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'css/mellivora.css" rel="stylesheet">';
+    <link href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'css/mellivora.css" rel="stylesheet">
+    <link href="',Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES'),'css/kyberchod.css" rel="stylesheet">';
 
     js_global_dict();
 
@@ -56,9 +57,9 @@ echo '
         <div id="header-inner">
             <div id="header-logo">
                 <a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'">
-                    <h3 id="site-logo-text">',Config::get('MELLIVORA_CONFIG_SITE_NAME'),'</h3>
+
                     <div id="site-logo">
-                        <object data="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/mellivora.svg" type="image/svg+xml"></object>
+                        <object data="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/kyberchod.svg" type="image/svg+xml"></object>
                     </div>
                 </a>
             </div>

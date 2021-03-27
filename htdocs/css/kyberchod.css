@@ -1,0 +1,184 @@
+body {
+    background-color: #345;
+    color: #abc;
+}
+
+body a {
+    color: #fff;
+}
+
+body a:hover {
+    color: #6c0;
+}
+
+select {
+    background-color: #abc;
+    color: #123;
+}
+
+.page {
+    background-color: #456;
+}
+
+.table > thead > tr > th {
+    border-bottom: 2px solid #678;
+}
+
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+    background-color: #567;
+}
+
+.table-striped > tbody > tr:hover {
+    background-color: #345;
+}
+
+.table > tbody > tr > td {
+    border-top: 1px solid #678;
+}
+
+.nav-pills > li.active > a {
+    background-color: #6c0;
+}
+
+.form-control {
+    background-color: #abc;
+    color: #123;
+    border: 1px solid #789;
+}
+
+.btn-primary {
+    background-color: #6c0;
+    border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+    background-color: #390;
+    border: 1px solid transparent;
+}
+
+.modal-content {
+    background-color: #234;
+}
+
+.label-info {
+    background-color: #6c0;
+}
+
+.form-control{
+    border-color: #678;
+}
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #789;
+}
+
+.pagination > .active > a {
+    background-color: #6c0;
+    border-color: #6c0;
+}
+
+.pagination > .active > a:hover {
+    background-color: #390;
+    border-color: #390;
+}
+
+.panel-default > .panel-heading {
+    background-color: #345;
+    border: none;
+    color: #abc;
+}
+
+.panel-success > .panel-heading {
+    color: #a8d68e;
+    background-color: #345;
+    border: none;
+}
+
+.panel-body{
+    background-color: #567;
+    color: #abc;
+}
+
+.panel-default, .panel-success {
+    border: none;
+}
+
+.panel {
+    background-color: transparent;
+}
+
+.progress {
+    background-color: #789;
+}
+
+#footer {
+    background-color: #234;
+    border-top: 4px solid #345;
+}
+
+#header-inner {
+    background-color: #234;
+    border-bottom: 4px solid #345;
+}
+
+#menu-main .active a {
+    color: #ffffff;
+    background-color: #567;
+}
+
+#menu-main :not(.active) a:hover, #menu-main :not(.active) form:hover {
+    background-color: #abc;
+}
+
+#menu-main a:hover {
+    color: #345;
+}
+
+#menu-main button {
+    color: #fff;
+}
+
+#menu-main button:hover {
+    color: #345;
+}
+
+#categories-menu li {
+    border: 1px solid #6c0;
+}
+
+#categories-menu li.active {
+    background: #6c0;
+}
+
+#categories-menu li.active a {
+    color: #ffffff;
+}
+
+#categories-menu li.disabled {
+    border-color: #abc;
+}
+
+#categories-menu li.disabled a {
+    color: #abc;
+}
+
+#site-logo object {
+    width: 250px;
+    height: 64px;
+}
+
+/**
+    Challenges page
+**/
+/*
+.category-tab-content {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid rgb(221, 221, 221);
+    border-top: none;
+
+}
+*/
+.page-header {
+    border-bottom: 1px solid #678;
+}
