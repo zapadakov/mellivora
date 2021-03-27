@@ -13,6 +13,7 @@ require(CONST_PATH_INCLUDE . 'cache.inc.php');
 require(CONST_PATH_INCLUDE . 'json.inc.php');
 require(CONST_PATH_INCLUDE . 'email.inc.php');
 require(CONST_PATH_INCLUDE . 'files.inc.php');
+require(CONST_PATH_INCLUDE . 'discord.inc.php');
 require(CONST_PATH_INCLUDE . 'captcha.inc.php');
 require(CONST_PATH_INCLUDE . 'two_factor_auth.inc.php');
 require(CONST_PATH_LAYOUT . 'layout.inc.php');
