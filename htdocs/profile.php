@@ -12,6 +12,7 @@ $user = db_select_one(
         'enabled',
         'competing',
         'country_id',
+        'discord_id',
         '2fa_status'
     ),
     array('id' => $_SESSION['id'])
@@ -31,6 +32,8 @@ form_input_text('Team name', $user['team_name'], array('disabled'=>true));
 
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
+
+form_input_text('Discord ID', $user['discord_id']);
 
 form_hidden('action', 'edit');
 form_button_submit(lang_get('save_changes'));
