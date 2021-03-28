@@ -71,7 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'available_from',
                 'available_until',
                 'num_attempts_allowed',
-                'min_seconds_between_submissions'
+                'min_seconds_between_submissions',
+                'discord_id'
             ),
             array(
                 'id' => $_POST['challenge']
@@ -128,6 +129,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'marked'=>($challenge['automark'] ? '1' : '0')
             )
         );
+
+        //unlock related Discord channel in case of correct submission
+        if ($correct) {
+            // get user information
+            $user = db_select_one(
+                'users',
+                array(
+                    'discord_id'
+                ),
+                array(
+                    'id' => $_SESSION['id']
+                )
+            );
+            if ($user['discord_id'] != 0) {
+                unlock_discord_channel($challenge['discord_id'], $user['discord_id']);
+            }
+        }
 
         if (!$challenge['automark']) {
             redirect('challenges?status=manual');
