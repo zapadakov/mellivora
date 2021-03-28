@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         require_fields(array('title'), $_POST);
 
-        $discord_id = '';
+        $discord_id = 0;
         if ($_POST['discord'] == true) {
             $discord_id = create_discord_category($_POST['title']);
         }

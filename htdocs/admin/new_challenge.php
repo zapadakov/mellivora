@@ -38,6 +38,7 @@ array_unshift($opts, array('id'=>0, 'title'=> '-- This challenge will become ava
 form_select($opts, 'Relies on', 'id', $challenge['relies_on'], 'title', 'category');
 
 form_input_checkbox('Exposed', true);
+form_input_checkbox('Discord', true);
 form_input_text('Available from', date_time());
 form_input_text('Available until', date_time());
 

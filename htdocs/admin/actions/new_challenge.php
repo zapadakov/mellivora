@@ -16,6 +16,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         require_fields(array('title'), $_POST);
 
+        $discord_id = 0;
+        if ($_POST['discord'] == true) {
+            $category = db_select_one(
+                'categories',
+                array('*'),
+                array('id' => $_POST['category'])
+            );
+            $discord_id = create_discord_channel($_POST['title'], $category['discord_id']);
+        }
+
         $id = db_insert(
             'challenges',
             array(
@@ -32,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'min_seconds_between_submissions' => empty_to_zero($_POST['min_seconds_between_submissions']),
                 'relies_on'=>$_POST['relies_on'],
                 'exposed' => $_POST['exposed'],
+                'discord_id' => $discord_id,
                 'available_from' => strtotime($_POST['available_from']),
                 'available_until' => strtotime($_POST['available_until'])
             )
