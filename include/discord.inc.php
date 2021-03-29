@@ -24,7 +24,7 @@ function create_discord_category($name) {
 }
 
 function create_discord_channel($name, $discord_category_id) {
-    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID')) {
+    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_BOT_ID')) {
         try {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
 
