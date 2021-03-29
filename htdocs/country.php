@@ -4,7 +4,7 @@ require('../include/mellivora.inc.php');
 
 login_session_refresh();
 
-if (strlen(array_get($_GET, 'code')) != 2) {
+if (strlen(array_get($_GET, 'code')) > 20) {
     message_error(lang_get('please_supply_country_code'));
 }
 
