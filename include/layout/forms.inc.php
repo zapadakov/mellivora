@@ -24,12 +24,15 @@ function form_file ($name) {
     echo '<input type="file" name="',$field_name,'" id="',$field_name,'" />';
 }
 
-function form_input_text($name, $prefill = false, array $options = null) {
+function form_input_text($name, $prefill = false, array $options = null, $label = '') {
     $name = htmlspecialchars($name);
+    if ($label=='') {
+        $label = $name;
+    }
     $field_name = strtolower(str_replace(' ','_',$name));
     echo '
     <div class="form-group">
-      <label class="col-sm-2 control-label" for="',$field_name,'">',$name,'</label>
+      <label class="col-sm-2 control-label" for="',$field_name,'">',$label,'</label>
       <div class="col-sm-10">
           <input
             type="text"
@@ -128,12 +131,15 @@ function form_button_submit ($name, $type = 'primary') {
     ';
 }
 
-function form_select ($opts, $name, $value, $selected, $option, $optgroup='') {
+function form_select ($opts, $name, $value, $selected, $option, $optgroup='', $label='') {
     $name = htmlspecialchars($name);
+    if ($label=='') {
+        $label = $name;
+    }
     $field_name = strtolower(str_replace(' ','_',$name));
     echo '
     <div class="form-group">
-        <label class="col-sm-2 control-label" for="',$field_name,'">',$name,'</label>
+        <label class="col-sm-2 control-label" for="',$field_name,'">',$label,'</label>
         <div class="col-sm-10">
 
         <select id="',$field_name,'" name="',$field_name,'">';

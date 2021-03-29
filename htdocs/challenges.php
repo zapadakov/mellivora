@@ -143,7 +143,7 @@ foreach($challenges as $challenge) {
         echo '
         <div class="panel panel-default challenge-container">
             <div class="panel-heading">
-                <h4 class="challenge-head">Hidden challenge worth ', number_format($challenge['points']), 'pts</h4>
+                <h4 class="challenge-head">Hidden challenge worth ', number_format($challenge['points']), lang_get('points_short'), '</h4>
             </div>
             <div class="panel-body">
                 <div class="challenge-description">
@@ -159,7 +159,7 @@ foreach($challenges as $challenge) {
     <div class="panel ', get_submission_box_class($challenge, $has_remaining_submissions), ' challenge-container">
         <div class="panel-heading">
             <h4 class="challenge-head">
-            <a href="challenge?id=',htmlspecialchars($challenge['id']),'">',htmlspecialchars($challenge['title']), '</a> (', number_format($challenge['points']), 'pts)';
+            <a href="challenge?id=',htmlspecialchars($challenge['id']),'">',htmlspecialchars($challenge['title']), '</a> (', number_format($challenge['points']), lang_get('points_short'),')';
 
             if ($challenge['correct_submission_added']) {
                 $solve_position = db_query_fetch_one('
