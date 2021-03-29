@@ -13,6 +13,7 @@ echo '
       <thead>
         <tr>
           <th>Team</th>
+          <th>Full name</th>
           <th>Email</th>
           <th>Added</th>
           <th>Last active</th>
@@ -52,6 +53,7 @@ $users = db_query_fetch_all('
        u.id,
        u.email,
        u.team_name,
+       u.full_name,
        u.added,
        u.last_active,
        u.class,
@@ -82,6 +84,7 @@ foreach($users as $user) {
             ',country_flag_link($user['country_name'], $user['country_code']),'
             <a href="',Config::get('MELLIVORA_CONFIG_SITE_ADMIN_URL'),'user?id=',htmlspecialchars($user['id']),'">',htmlspecialchars($user['team_name']),'</a>
         </td>
+        <td>',htmlspecialchars($user['full_name']),'</td>
         <td><a href="',Config::get('MELLIVORA_CONFIG_SITE_ADMIN_URL'),'new_email.php?to=',htmlspecialchars($user['email']),'">',htmlspecialchars($user['email']),'</a></td>
         <td>',date_time($user['added']),'</td>
         <td>',($user['last_active'] ? date_time($user['last_active']) : '<i>Never</i>'),'</td>

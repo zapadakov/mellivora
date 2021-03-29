@@ -1,5 +1,6 @@
 ALTER TABLE countries MODIFY COLUMN country_name VARCHAR(100);
 ALTER TABLE countries MODIFY COLUMN country_code VARCHAR(20);
+ALTER TABLE users ADD COLUMN full_name VARCHAR(255) NOT NULL;
 
 INSERT INTO countries (id, country_name, country_code) VALUES
 (1, 'Czech Republic', 'cz'),

@@ -8,6 +8,7 @@ $user = db_select_one(
     'users',
     array(
         'team_name',
+        'full_name',
         'email',
         'enabled',
         'competing',
@@ -29,6 +30,7 @@ section_subhead(
 form_start('actions/profile');
 form_input_text('Email', $user['email'], array('disabled'=>true), lang_get('email_address'));
 form_input_text('Team name', $user['team_name'], array('disabled'=>true), lang_get('team_name'));
+form_input_text('Full name', $user['full_name'], array('disabled'=>false), lang_get('full_name'));
 
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name', '', lang_get('country'));

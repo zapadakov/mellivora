@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         db_update(
           'users',
           array(
+             'full_name'=>$_POST['full_name'],
              'country_id'=>$_POST['country'],
              'discord_id'=>$_POST['discord_id']
           ),
