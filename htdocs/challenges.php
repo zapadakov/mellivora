@@ -30,7 +30,7 @@ $categories = db_select_all(
     array(
         'exposed'=>1
     ),
-    'title ASC'
+    'available_from DESC'
 );
 
 // determine which category to display
@@ -123,7 +123,7 @@ $challenges = db_query_fetch_all('
     WHERE
        c.category = :category AND
        c.exposed = 1
-    ORDER BY c.points ASC, c.id ASC',
+    ORDER BY c.available_from DESC',
     array(
         'user_id_1'=>$_SESSION['id'],
         'user_id_2'=>$_SESSION['id'],

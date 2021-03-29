@@ -10,7 +10,7 @@ menu_management();
 
 check_server_configuration();
 
-$categories = db_query_fetch_all('SELECT * FROM categories ORDER BY title');
+$categories = db_query_fetch_all('SELECT * FROM categories ORDER BY available_from DESC');
 if (empty($categories)) {
     message_generic('Welcome', 'Your CTF is looking a bit empty! Start by adding a category using the menu above.');
 }
@@ -38,7 +38,7 @@ foreach($categories as $category) {
             'points'
         ),
         array('category' => $category['id']),
-        'points ASC'
+        'available_from DESC'
     );
 
     if (empty($challenges)) {

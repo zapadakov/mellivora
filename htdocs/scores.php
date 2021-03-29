@@ -111,7 +111,7 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
         WHERE
            available_from < '.$now.' AND
            exposed = 1
-        ORDER BY title'
+        ORDER BY available_from DESC'
     );
 
     challenges($categories);
