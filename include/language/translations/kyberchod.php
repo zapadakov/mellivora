@@ -57,12 +57,12 @@ $lang['email_not_whitelisted'] = 'Email not on whitelist. Please choose a whitel
 $lang['user_already_exists'] = 'Účet s touto přezdívkou nebo emailovou adresou už existuje.';
 $lang['signup_successful'] = 'Signup successful';
 $lang['signup_successful_text'] = 'Thank you for registering! Your chosen email is: {email}. Make sure to check your spam folder as emails from us may be placed into it. Please stay tuned for updates!';
-$lang['your_password_is'] = 'Your password is';
+$lang['your_password_is'] = 'Tvé heslo je';
 $lang['your_password_was_set'] = 'Your password was chosen by you on signup.';
 
-$lang['signup_email_subject'] = '{site_name} account details';
+$lang['signup_email_subject'] = '{site_name} účet';
 $lang['signup_email_success'] =
-    '{team_name}, your registration at {site_name} was successful.' .
+    '{site_name} - registrace účtu {team_name} byla úspěšná.' .
     "\r\n" .
     "\r\n" .
     '{signup_email_availability}' .
@@ -71,14 +71,17 @@ $lang['signup_email_success'] =
     '{signup_email_password}' .
     "\r\n" .
     "\r\n" .
-    'Please stay tuned for updates!' .
+    'Po přihlášení si v profilu můžeš vyplnit celé jméno. Bude se hodit, pokud bude potřeba ověřit tvůj status žáka ve škole (např. když něco vyhraješ).' .
     "\r\n" .
     "\r\n" .
-    'Regards,' .
+    'Máš-li účet na Discordu, rádi tě přivítáme na našem serveru: aHR0cHM6Ly9kaXNjb3JkLmdnL0pLWTNXUlkyeGg=' .
+    "\r\n" .
+    "\r\n" .
+    'Těšíme se,' .
     "\r\n" .
     '{site_name}'
 ;
-$lang['signup_email_account_availability_message_login_now'] = 'You can now log in using your email and chosen password.';
+$lang['signup_email_account_availability_message_login_now'] = 'Teď se můžeš přihlásit pomocí emailové adresy a hesla.';
 $lang['signup_email_account_availability_message_login_later'] = 'Once the competition starts, please use this email address to log in.';
 
 $lang['register_interest'] = 'Register interest';
