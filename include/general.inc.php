@@ -401,7 +401,7 @@ function get_num_participating_users() {
           ) UNION DISTINCT (
             SELECT DISTINCT id
             FROM users
-            WHERE last_active > UNIX_TIMESTAMP(NOW() - INTERVAL 1 DAY) AND competing = 1
+            WHERE competing = 1
           )
         ) AS x
     ');

@@ -80,11 +80,19 @@ function challenges($categories) {
 
         foreach($challenges as $challenge) {
 
-            $num_solvers = db_count_num(
-                'submissions',
+            $num_solvers = db_query_fetch_one('
+                SELECT
+                COUNT(*) AS num
+                FROM submissions AS s
+                LEFT JOIN users AS u ON s.user_id = u.id
+                WHERE
+                  u.competing = :competing AND
+                  s.challenge = :challenge AND
+                  s.correct = :correct',
                 array(
                     'correct' => 1,
-                    'challenge' => $challenge['id']
+                    'challenge' => $challenge['id'],
+                    'competing' => 1
                 )
             );
 
@@ -99,7 +107,7 @@ function challenges($categories) {
                 </td>
 
                 <td class="center">
-                    ',number_format($num_participating_users ? ($num_solvers / $num_participating_users) * 100 : 0),'%
+                    ',number_format($num_participating_users ? ($num_solvers['num'] / $num_participating_users) * 100 : 0),'%
                 </td>
 
                 <td class="team-name">';

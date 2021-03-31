@@ -162,21 +162,27 @@ foreach($challenges as $challenge) {
             <a href="challenge?id=',htmlspecialchars($challenge['id']),'">',htmlspecialchars($challenge['title']), '</a> (', number_format($challenge['points']), lang_get('points_short'),')';
 
             if ($challenge['correct_submission_added']) {
-                $solve_position = db_query_fetch_one('
-                    SELECT
-                      COUNT(*)+1 AS pos
-                    FROM
-                      submissions AS s
-                    WHERE
-                      s.correct = 1 AND
-                      s.added < :correct_submission_added AND
-                      s.challenge = :challenge_id',
-                    array(
-                        'correct_submission_added'=>$challenge['correct_submission_added'],
-                        'challenge_id'=>$challenge['id']
-                    )
-                );
-
+                //medal for competitors only
+                if (db_count_num('users', array('competing'=>1, 'id'=>$_SESSION['id'])) > 0) {
+                    $solve_position = db_query_fetch_one('
+                        SELECT
+                        COUNT(*)+1 AS pos
+                        FROM
+                        submissions AS s
+                        LEFT JOIN users AS u ON s.user_id = u.id
+                        WHERE
+                        s.correct = 1 AND
+                        s.added < :correct_submission_added AND
+                        s.challenge = :challenge_id AND
+                        u.competing = 1',
+                        array(
+                            'correct_submission_added'=>$challenge['correct_submission_added'],
+                            'challenge_id'=>$challenge['id']
+                        )
+                    );
+                } else {
+                    $solve_position['pos'] = 0;
+                }
                 echo ' <span class="glyphicon glyphicon-ok"></span>';
                 echo get_position_medal($solve_position['pos']);
             }

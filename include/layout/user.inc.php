@@ -44,7 +44,19 @@ function print_solved_challenges($user_id) {
     $submissions = db_query_fetch_all('
         SELECT
            s.added,
-           ((SELECT COUNT(*) FROM submissions AS ss WHERE ss.correct = 1 AND ss.added < s.added AND ss.challenge=s.challenge)+1) AS pos,
+           IF(u.competing=1,
+             ((SELECT
+               COUNT(*)+1
+               FROM
+                 submissions AS ss
+               LEFT JOIN users AS uu ON ss.user_id = uu.id
+               WHERE
+                 ss.correct = 1 AND
+                 ss.added < s.added AND
+                 ss.challenge = s.challenge AND
+                 uu.competing = 1
+               )),
+             0) as pos,
            ch.id AS challenge_id,
            ch.available_from,
            ch.title,
@@ -53,6 +65,7 @@ function print_solved_challenges($user_id) {
         FROM submissions AS s
         LEFT JOIN challenges AS ch ON ch.id = s.challenge
         LEFT JOIN categories AS ca ON ca.id = ch.category
+        LEFT JOIN users AS u ON s.user_id = u.id
         WHERE
            s.correct = 1 AND
            s.user_id = :user_id AND
