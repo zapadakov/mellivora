@@ -477,6 +477,11 @@ function register_account($email, $password, $team_name, $country, $type = null)
         message_error(lang_get('user_already_exists'));
     }
 
+    $competing = 0;
+    if($_POST['country'] > 1) {
+        $competing = 1;
+    }
+
     $user_id = db_insert(
         'users',
         array(
@@ -486,6 +491,7 @@ function register_account($email, $password, $team_name, $country, $type = null)
             'team_name'=>$team_name,
             'added'=>time(),
             'enabled'=>(Config::get('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ? '1' : '0'),
+            'competing'=>$competing,
             'user_type'=>(isset($type) ? $type : 0),
             'country_id'=>$country
         )

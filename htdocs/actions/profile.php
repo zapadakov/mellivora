@@ -13,12 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'edit') {
 
+        $competing = 0;
+        if($_POST['country'] > 1) {
+            $competing = 1;
+        }
+
         db_update(
           'users',
           array(
              'full_name'=>$_POST['full_name'],
              'country_id'=>$_POST['country'],
-             'discord_id'=>$_POST['discord_id']
+             'discord_id'=>$_POST['discord_id'],
+             'competing'=>$competing
           ),
           array(
              'id'=>$_SESSION['id']
