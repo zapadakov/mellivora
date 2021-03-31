@@ -45,7 +45,7 @@ $lang['email_password_on_signup'] = 'Heslo bude vygenerováno a zasláno na zada
 
 $lang['register'] = 'Registrace';
 $lang['register_your_team'] = 'Registrace';
-$lang['account_signup_information'] = 'Soutěžit mohou jen ti, kdo mají v profilu vybránu svou školu (z Plzeňského kraje). Chybí-li tvá škola v seznamu, registruj se pod Czech Republic. Budeš-li pak chtít zařadit mezi soutěžící, ozvi se na Discordu a školu doplníme. {password_information}';
+$lang['account_signup_information'] = 'Soutěžit mohou jen ti, kdo mají v profilu vybránu svou školu. Chybí-li ve výběru, registruj se pod Czech Republic (tyto účty nesoutěží). Ozvi se pak na Discordu nebo emailem a školu doplníme. {password_information}';
 $lang['team_name'] = 'Přezdívka';
 $lang['full_name'] = 'Celé jméno';
 $lang['select_team_type'] = 'Vyber prosím soutěžní kategorii';
