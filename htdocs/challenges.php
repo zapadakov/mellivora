@@ -143,7 +143,7 @@ foreach($challenges as $challenge) {
         echo '
         <div class="panel panel-default challenge-container">
             <div class="panel-heading">
-                <h4 class="challenge-head">Hidden challenge worth ', number_format($challenge['points']), lang_get('points_short'), '</h4>
+                <h4 class="challenge-head">',lang_get('hidden_challenge_worth'), number_format($challenge['points']), lang_get('points_short'), '</h4>
             </div>
             <div class="panel-body">
                 <div class="challenge-description">
@@ -263,7 +263,7 @@ foreach($challenges as $challenge) {
                 echo '
                 <div class="challenge-submit">
                     <form method="post" class="form-flag" action="actions/challenges">
-                        <textarea name="flag" id="flag-input-'.htmlspecialchars($challenge['id']).'" type="text" class="flag-input form-control" placeholder="Please enter flag for challenge: ',htmlspecialchars($challenge['title']),'"></textarea>
+                        <textarea name="flag" id="flag-input-'.htmlspecialchars($challenge['id']).'" type="text" class="flag-input form-control" placeholder="',lang_get("please_enter_flag"),'"></textarea>
                         <input type="hidden" name="challenge" value="',htmlspecialchars($challenge['id']),'" />
                         <input type="hidden" name="action" value="submit_flag" />';
 
@@ -273,7 +273,7 @@ foreach($challenges as $challenge) {
                     display_captcha();
                 }
 
-                echo '<button id="flag-submit-',htmlspecialchars($challenge['id']),'" class="btn btn-sm btn-primary flag-submit-button" type="submit" data-countdown="',max($challenge['latest_submission_added']+$challenge['min_seconds_between_submissions'], 0),'" data-countdown-done="Submit flag">Submit flag</button>';
+                echo '<button id="flag-submit-',htmlspecialchars($challenge['id']),'" class="btn btn-sm btn-primary flag-submit-button" type="submit" data-countdown="',max($challenge['latest_submission_added']+$challenge['min_seconds_between_submissions'], 0),'" data-countdown-done="',lang_get("submit_flag"),'">',lang_get("submit_flag"),'</button>';
 
                 if (should_print_metadata($challenge)) {
                     echo '<div class="challenge-submit-metadata">';

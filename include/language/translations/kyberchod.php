@@ -1,13 +1,13 @@
 <?php
 
 $lang['sorry'] = 'Sorry';
-$lang['after_release'] = 'after release';
-$lang['position'] = 'Position';
+$lang['after_release'] = 'po zveřejnění';
+$lang['position'] = 'Pořadí';
 $lang['team'] = 'Přezdívka';
 $lang['points'] = 'Body';
 $lang['points_short'] = 'b';
 $lang['country'] = 'Škola';
-$lang['solved'] = 'Solved';
+$lang['solved'] = 'Vyřešeno';
 $lang['home'] = 'Úvod';
 $lang['profile'] = 'Profil';
 $lang['scores'] = 'Výsledky';
@@ -20,9 +20,9 @@ $lang['view_public_profile'] = 'Zobrazit veřejný profil';
 $lang['hint'] = 'Hint';
 $lang['hints'] = 'Hints';
 $lang['no_hints_available'] = 'No hints have been made available yet.';
-$lang['challenge'] = 'Challenge';
+$lang['challenge'] = 'Úloha';
 $lang['added'] = 'Added';
-$lang['challenges'] = 'Útoky';
+$lang['challenges'] = 'Úlohy';
 $lang['category'] = 'Category';
 $lang['ctf_empty'] = 'Your CTF is looking a bit empty! Start by adding a category using the management console.';
 $lang['available_in'] = 'Available in';
@@ -114,8 +114,8 @@ $lang['challenge_details'] = 'Challenge details';
 $lang['no_challenge_for_id'] = 'No challenge found with this ID, or challenge not public';
 $lang['no_category_for_id'] = 'No category found with that ID, or category not public';
 $lang['challenge_not_available'] = 'This challenge is not yet available';
-$lang['challenge_not_solved'] = 'This challenge has not yet been solved by any teams.';
-$lang['challenge_solved_by_percentage'] = 'This challenge has been solved by {solve_percentage}% of actively participating users.';
+$lang['challenge_not_solved'] = 'Tuto úlohu zatím nikdo nevyřešil.';
+$lang['challenge_solved_by_percentage'] = 'Tuto úlohu dosud vyřešilo {solve_percentage}% soutěžících.';
 
 $lang['challenge_solved_first'] = 'First to solve this challenge!';
 $lang['challenge_solved_second'] = 'Second to solve this challenge!';
@@ -124,19 +124,19 @@ $lang['challenge_solved_third'] = 'Third to solve this challenge!';
 $lang['correct_flag'] = 'Correct flag, you are awesome!';
 $lang['incorrect_flag'] = 'Incorrect flag, try again.';
 $lang['submission_awaiting_mark'] = 'Your submission is awaiting manual marking.';
-$lang['please_enter_flag'] = 'Please enter flag for challenge:';
-$lang['submit_flag'] = 'Submit flag';
-$lang['no_remaining_submissions'] = 'You have no remaining submission attempts. If you have made an erroneous submission, please contact the organizers.';
+$lang['please_enter_flag'] = 'KyberChod{ }';
+$lang['submit_flag'] = 'Odeslat flag';
+$lang['no_remaining_submissions'] = 'Nezbývá žádný pokus. V případě nejasností kontaktuj organizátora.';
 
 $lang['no_category_with_id'] = 'No category found with that ID';
 
 $lang['cat_unavailable_explanation'] = 'This category is not available. It is open from {available_from} ({available_from_time_remaining} from now) until {available_until} ({available_until_time_remaining} from now)';
 
-$lang['hidden_challenge_worth'] = 'Hidden challenge worth {pts}b';
+$lang['hidden_challenge_worth'] = 'Skrytá úloha za ';
 
 $lang['available_in'] = 'Available in {available_in} (from {from} until {to})';
-$lang['minimum_time_between_submissions'] = 'Minimum of {time} between submissions.';
-$lang['num_submissions_remaining'] = '{num_remaining} submissions remaining.';
+$lang['minimum_time_between_submissions'] = 'Minimální interval mezi pokusy: {time}.';
+$lang['num_submissions_remaining'] = 'Zbývá {num_remaining} pokusů.';
 $lang['time_remaining'] = '{time} remaining';
 
 $lang['challenge_relies_on'] = 'The details for this challenge will be displayed only after {relies_on_link} in the {relies_on_category_link} category has been solved (by any team).';
@@ -146,7 +146,7 @@ $lang['no_reset_data'] = 'No reset data found.';
 $lang['scoreboard'] = 'Výsledky';
 $lang['first_solvers'] = 'Nejrychlejší';
 $lang['percentage_solvers'] = 'Vyřešilo';
-$lang['unsolved'] = 'Unsolved';
+$lang['unsolved'] = 'zatím nikdo';
 
 $lang['user_details'] = 'User details';
 $lang['no_user_found'] = 'No user found with that ID';
@@ -155,8 +155,8 @@ $lang['no_information'] = 'No information';
 $lang['no_solves'] = 'This user has not solved any challenges yet!';
 $lang['no_exceptions'] = 'No exceptions for this user';
 $lang['solved_challenges'] = 'Vyřešené úlohy';
-$lang['total_solves'] = 'Total:';
-$lang['no_challenges_solved'] = 'Zatím nic!';
+$lang['total_solves'] = 'Celkem:';
+$lang['no_challenges_solved'] = 'zatím nic';
 
 $lang['action_success'] = 'Success!';
 $lang['action_failure'] = 'Failure!';
@@ -221,3 +221,5 @@ $lang['list_exceptions'] = 'List exceptions';
 $lang['clear_exceptions'] = 'Clear exceptions';
 
 $lang['search'] = 'Search';
+
+$lang['discord_user_not_found'] = 'Žádný takový účet nebyl na Discordu nalezen.';
