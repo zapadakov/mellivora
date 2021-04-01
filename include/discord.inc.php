@@ -79,3 +79,24 @@ function unlock_discord_channel($discord_channel_id, $discord_user_id) {
         message_error('Set Discord parameters in config!');
     }
 }
+
+function get_discord_user($discord_user_id) {
+    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID')) {
+        try {
+            $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
+            
+            $result = $client->user->getUser(array(
+                'user.id' => intval($discord_user_id),
+            ));
+            return array(
+                'id' => $result->id
+            );
+
+        } catch (Exception $e) {
+            message_error(lang_get("discord_user_not_found"));
+        }
+    }
+    else {
+        message_error('Set Discord parameters in config!');
+    }
+}

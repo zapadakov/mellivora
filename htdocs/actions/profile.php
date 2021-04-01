@@ -18,12 +18,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $competing = 1;
         }
 
+        if (strlen($_POST['discord_id']) == 18) {
+            $discord_user = get_discord_user($_POST['discord_id']);
+        } else {
+            $discord_user['id'] = 0;
+        }
+
         db_update(
           'users',
           array(
              'full_name'=>$_POST['full_name'],
              'country_id'=>$_POST['country'],
-             'discord_id'=>$_POST['discord_id'],
+             'discord_id'=>$discord_user['id'],
              'competing'=>$competing
           ),
           array(
