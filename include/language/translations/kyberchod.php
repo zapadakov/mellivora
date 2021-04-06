@@ -71,13 +71,14 @@ $lang['signup_email_success'] =
     '{signup_email_password}' .
     "\r\n" .
     "\r\n" .
-    'Po přihlášení si v profilu můžeš vyplnit celé jméno. Bude se hodit, pokud bude potřeba ověřit tvůj status žáka ve škole (např. když něco vyhraješ).' .
+    'Po přihlášení si v profilu můžeš vyplnit celé jméno. Bude se hodit, pokud bude potřeba ověřit tvůj status žáka ve škole.' .
     "\r\n" .
     "\r\n" .
-    'Máš-li účet na Discordu, rádi tě přivítáme na našem serveru: aHR0cHM6Ly9kaXNjb3JkLmdnL0pLWTNXUlkyeGg=' .
+    'Máš-li účet na Discordu, rádi tě přivítáme na našem serveru: aHR0cHM6Ly9kaXNjb3JkLmdnL1BRNU15cGpoaGQ=' .
     "\r\n" .
     "\r\n" .
     'Těšíme se,' .
+    "\r\n" .
     "\r\n" .
     '{site_name}'
 ;
@@ -103,7 +104,7 @@ $lang['please_request_page'] = 'Please request a page to show';
 $lang['please_supply_country_code'] = 'Please supply a valid country code';
 $lang['not_a_valid_link'] = 'That is not a valid link.';
 $lang['not_a_valid_email'] = 'That doesn\'t look like an email. Please go back and double check the form.';
-$lang['please_select_country'] = 'Vyber prosím školu';
+$lang['please_select_country'] = 'Vyber svou školu';
 
 $lang['no_file_found'] = 'No file found with this ID.';
 $lang['invalid_team_key'] = 'Invalid team key.';
