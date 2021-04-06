@@ -86,7 +86,7 @@ function get_discord_user($discord_user_id) {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
             
             $result = $client->user->getUser(array(
-                'user.id' => intval($discord_user_id),
+                'user.id' => intval($discord_user_id)
             ));
             return array(
                 'id' => $result->id
@@ -94,6 +94,84 @@ function get_discord_user($discord_user_id) {
 
         } catch (Exception $e) {
             message_error(lang_get("discord_user_not_found"));
+        }
+    }
+    else {
+        message_error('Set Discord parameters in config!');
+    }
+}
+
+function get_discord_member($discord_user_id) {
+    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID')) {
+        try {
+            $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
+            
+            $client->guild->getGuildMember(array(
+                'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                'user.id' => intval($discord_user_id)
+            ));
+            return array(
+                'id' => $result->id,
+                'nick' => $result->nick
+            );
+            
+        } catch (Exception $e) {
+            message_error(lang_get("discord_user_not_found"));
+        }
+    }
+    else {
+        message_error('Set Discord parameters in config!');
+    }
+}
+
+function link_discord_account($discord_user_id, $nick, $competing) {
+    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_USER_ROLE_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID')) {
+        try {
+            $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
+
+            $user = $client->user->getUser(array(
+                'user.id' => intval($discord_user_id)
+            ));
+            //valid user?
+            if ($user->id > 0) {
+                $member = $client->guild->getGuildMember(array(
+                    'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                    'user.id' => intval($discord_user_id)
+                ));
+                //guild member?
+                if ($member) {
+                    $client->guild->modifyGuildMember(array(
+                        'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                        'user.id' => intval($discord_user_id),
+                        'nick' => $nick
+                    ));
+                    //check user role
+                    if (!in_array(Config::get('MELLIVORA_CONFIG_DISCORD_USER_ROLE_ID'), $member->roles)) {
+                        $client->guild->addGuildMemberRole(array(
+                            'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                            'user.id' => intval($discord_user_id),
+                            'role.id' => Config::get('MELLIVORA_CONFIG_DISCORD_USER_ROLE_ID')
+                        ));
+                    }
+                    //check competitor role
+                    $parameters = array(
+                        'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                        'user.id' => intval($discord_user_id),
+                        'role.id' => Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID')
+                    );
+                    if ((!in_array(Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID'), $member->roles) && ($competing == 1))) {
+                        $client->guild->addGuildMemberRole($parameters);
+                    } else if ((in_array(Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID'), $member->roles) && ($competing == 0))) {
+                        $client->guild->removeGuildMemberRole($parameters);
+                    }
+                    return array(
+                        'id' => $user->id
+                    );
+                }
+            }
+   
+        } catch (Exception $e) {
+            message_error(lang_get("discord_user_not_linked"));
         }
     }
     else {

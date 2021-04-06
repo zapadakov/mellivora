@@ -13,13 +13,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'edit') {
 
-        $competing = 0;
-        if($_POST['country'] > 1) {
-            $competing = 1;
-        }
+        $competing = (($_POST['country'] > 1) ? 1 : 0);
 
         if (strlen($_POST['discord_id']) == 18) {
-            $discord_user = get_discord_user($_POST['discord_id']);
+            $user = db_select_one(
+                'users',
+                array('team_name'),
+                array('id'=>$_SESSION['id'])
+            );
+            $discord_user = link_discord_account($_POST['discord_id'], $user['team_name'], $competing);
+
         } else {
             $discord_user['id'] = 0;
         }
