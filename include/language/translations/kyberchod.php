@@ -74,7 +74,7 @@ $lang['signup_email_success'] =
     'Po přihlášení si v profilu můžeš vyplnit celé jméno. Bude se hodit, pokud bude potřeba ověřit tvůj status žáka ve škole.' .
     "\r\n" .
     "\r\n" .
-    'Máš-li účet na Discordu, rádi tě přivítáme na našem serveru: aHR0cHM6Ly9kaXNjb3JkLmdnL1BRNU15cGpoaGQ=' .
+    'Máš-li účet na Discordu, rádi tě přivítáme na našem serveru: https://discord.gg/PQ5Mypjhhd' .
     "\r\n" .
     "\r\n" .
     'Těšíme se,' .
