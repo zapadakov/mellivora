@@ -224,3 +224,4 @@ $lang['clear_exceptions'] = 'Clear exceptions';
 $lang['search'] = 'Search';
 
 $lang['discord_user_not_linked'] = 'Propojení s Discord účtem se nezdařilo. Buď takový účet vůbec neexistuje, nebo není členem serveru.';
+$lang['new_solver'] = '📢 {user} vyřešil úlohu {challenge}, gratulujeme!';

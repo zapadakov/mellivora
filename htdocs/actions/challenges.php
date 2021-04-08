@@ -72,7 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'available_until',
                 'num_attempts_allowed',
                 'min_seconds_between_submissions',
-                'discord_id'
+                'discord_id',
+                'title'
             ),
             array(
                 'id' => $_POST['challenge']
@@ -136,7 +137,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = db_select_one(
                 'users',
                 array(
-                    'discord_id'
+                    'discord_id',
+                    'team_name',
+                    'competing'
                 ),
                 array(
                     'id' => $_SESSION['id']
@@ -144,6 +147,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             );
             if ($user['discord_id'] != 0) {
                 unlock_discord_channel($challenge['discord_id'], $user['discord_id']);
+            }
+            if ($user['competing'] == 1) {
+                send_discord_message(
+                    'new_solver',
+                    array(
+                        'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
+                        'challenge' => $challenge['title']
+                    ));
             }
         }
 

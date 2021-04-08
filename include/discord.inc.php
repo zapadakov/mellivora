@@ -178,3 +178,27 @@ function link_discord_account($discord_user_id, $nick, $competing) {
         message_error('Set Discord parameters in config!');
     }
 }
+
+function send_discord_message($type, $content) {
+    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_TOKEN')) {
+        try {
+            $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
+
+            if ($type == 'new_solver') {
+
+                $client->webhook->executeWebhook(array(
+                    'webhook.id' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_ID'),
+                    'webhook.token' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_TOKEN'),
+                    'content' => lang_get('new_solver', array('user' => $content['user'], 'challenge' => $content['challenge']))
+                ));
+        
+            }
+
+        } catch (Exception $e) {
+            message_error('Caught exception connecting to Discord: ' . $e->getMessage());
+        }
+    }
+    else {
+        message_error('Set Discord parameters in config!');
+    }
+}
