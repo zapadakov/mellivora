@@ -145,24 +145,23 @@ function link_discord_account($discord_user_id, $nick, $competing) {
                         'user.id' => intval($discord_user_id),
                         'nick' => $nick
                     ));
-                    //check user role
-                    if (!in_array(Config::get('MELLIVORA_CONFIG_DISCORD_USER_ROLE_ID'), $member->roles)) {
-                        $client->guild->addGuildMemberRole(array(
-                            'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
-                            'user.id' => intval($discord_user_id),
-                            'role.id' => Config::get('MELLIVORA_CONFIG_DISCORD_USER_ROLE_ID')
-                        ));
-                    }
                     //check competitor role
-                    $parameters = array(
+                    $competitor = array(
                         'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
                         'user.id' => intval($discord_user_id),
                         'role.id' => Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID')
                     );
+                    $non_competitor = array(
+                        'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                        'user.id' => intval($discord_user_id),
+                        'role.id' => Config::get('MELLIVORA_CONFIG_DISCORD_NON_COMPETITOR_ROLE_ID')
+                    );
                     if ((!in_array(Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID'), $member->roles) && ($competing == 1))) {
-                        $client->guild->addGuildMemberRole($parameters);
+                        $client->guild->addGuildMemberRole($competitor);
+                        $client->guild->removeGuildMemberRole($non_competitor);
                     } else if ((in_array(Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID'), $member->roles) && ($competing == 0))) {
-                        $client->guild->removeGuildMemberRole($parameters);
+                        $client->guild->addGuildMemberRole($non_competitor);
+                        $client->guild->removeGuildMemberRole($competitor);
                     }
                     return array(
                         'id' => $user->id
@@ -189,7 +188,7 @@ function send_discord_message($type, $content) {
                 $client->webhook->executeWebhook(array(
                     'webhook.id' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_ID'),
                     'webhook.token' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_TOKEN'),
-                    'content' => lang_get('new_solver', array('user' => $content['user'], 'challenge' => $content['challenge']))
+                    'content' => lang_get('new_solver', array('role' => $content['role'], 'user' => $content['user'], 'challenge' => $content['challenge']))
                 ));
         
             }

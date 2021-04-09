@@ -148,14 +148,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($user['discord_id'] != 0) {
                 unlock_discord_channel($challenge['discord_id'], $user['discord_id']);
             }
-            if ($user['competing'] == 1) {
-                send_discord_message(
-                    'new_solver',
-                    array(
-                        'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
-                        'challenge' => $challenge['title']
-                    ));
-            }
+            send_discord_message(
+                'new_solver',
+                array(
+                    'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
+                    'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
+                    'challenge' => $challenge['title']
+                )
+            );
         }
 
         if (!$challenge['automark']) {
