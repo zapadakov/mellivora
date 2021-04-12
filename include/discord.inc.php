@@ -125,7 +125,7 @@ function get_discord_member($discord_user_id) {
 }
 
 function link_discord_account($discord_user_id, $nick, $competing) {
-    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_USER_ROLE_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID')) {
+    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_NON_COMPETITOR_ROLE_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID')) {
         try {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
 
