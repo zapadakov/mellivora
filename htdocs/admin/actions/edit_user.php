@@ -18,9 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           array(
              'email'=>$_POST['email'],
              'team_name'=>$_POST['team_name'],
+             'full_name'=>$_POST['full_name'],
              'enabled'=>$_POST['enabled'],
              'competing'=>$_POST['competing'],
-             'country_id'=>$_POST['country']
+             'country_id'=>$_POST['country'],
+             'discord_id'=>$_POST['discord_id']
           ),
           array(
              'id'=>$_POST['id']

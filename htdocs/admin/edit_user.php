@@ -10,10 +10,12 @@ $user = db_select_one(
     'users',
     array(
         'team_name',
+        'full_name',
         'email',
         'enabled',
         'competing',
-        'country_id'
+        'country_id',
+        'discord_id'
     ),
     array('id' => $_GET['id'])
 );
@@ -26,9 +28,12 @@ section_subhead('Edit user: ' . $user['team_name']);
 form_start(Config::get('MELLIVORA_CONFIG_SITE_ADMIN_RELPATH') . 'actions/edit_user');
 form_input_text('Email', $user['email']);
 form_input_text('Team name', $user['team_name']);
+form_input_text('Full name', $user['full_name']);
 
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
+
+form_input_text('Discord ID', $user['discord_id']);
 
 form_input_checkbox('Enabled', $user['enabled']);
 form_input_checkbox('Competing', $user['competing']);
