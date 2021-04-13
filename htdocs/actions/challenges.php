@@ -153,7 +153,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 array(
                     'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
                     'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
-                    'challenge' => $challenge['title']
+                    'challenge_id' => $_POST['challenge'],
+                    'challenge_title' => $challenge['title']
                 )
             );
         }

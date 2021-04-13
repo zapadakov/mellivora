@@ -194,13 +194,19 @@ function send_discord_message($type, $content) {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
 
             if ($type == 'new_solver') {
-
                 $client->webhook->executeWebhook(array(
                     'webhook.id' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_ID'),
                     'webhook.token' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_TOKEN'),
-                    'content' => lang_get('new_solver', array('role' => $content['role'], 'user' => $content['user'], 'challenge' => $content['challenge']))
+                    'content' => lang_get(
+                        'new_solver',
+                        array(
+                            'role' => $content['role'],
+                            'user' => $content['user'],
+                            'challenge_id' => $content['challenge_id'],
+                            'challenge_title' => $content['challenge_title']
+                        )
+                    )
                 ));
-        
             }
 
         } catch (Exception $e) {
