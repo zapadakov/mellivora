@@ -10,11 +10,11 @@ head('Challenges');
 
 if (isset($_GET['status'])) {
     if ($_GET['status']=='correct') {
-        message_dialog('Congratulations! You got the flag!', 'Correct flag', 'Yay!', 'challenge-attempt correct on-page-load');
+        message_dialog(lang_get("correct_flag_message"), lang_get("correct_flag"), 'OK', 'challenge-attempt correct on-page-load');
     } else if ($_GET['status']=='incorrect') {
-        message_dialog('Sorry! That wasn\'t correct', 'Incorrect flag', 'Ok', 'challenge-attempt incorrect on-page-load');
+        message_dialog(lang_get("incorrect_flag_message"), lang_get("incorrect_flag"), 'OK', 'challenge-attempt incorrect on-page-load');
     } else if ($_GET['status']=='manual') {
-        message_inline_blue('<h1>Your submission is awaiting manual marking.</h1>', false);
+        message_inline_blue('<h1>'.lang_get("submission_awaiting_mark").'</h1>', false);
     }
 }
 
@@ -74,7 +74,7 @@ if (isset($_GET['category'])) {
 }
 
 if (empty($current_category)) {
-    message_generic('Challenges', 'Your CTF is looking a bit empty! Start by adding a category using the management console.');
+    message_generic('Challenges', lang_get("ctf_empty"));
 }
 
 // write out our categories menu
@@ -254,7 +254,7 @@ foreach($challenges as $challenge) {
 
             // if we have already made a submission to a manually marked challenge
             if ($challenge['num_submissions'] && !$challenge['automark'] && $challenge['unmarked']) {
-                message_inline_blue('Your submission is awaiting manual marking.');
+                message_inline_blue(lang_get("submission_awaiting_mark"));
             }
 
             // if we have remaining submissions, print the submission form
@@ -290,7 +290,7 @@ foreach($challenges as $challenge) {
             }
             // no remaining submission attempts
             else {
-                message_inline_blue("You have no remaining submission attempts. If you've made an erroneous submission, please contact the organizers.");
+                message_inline_blue(lang_get("no_remaining_submissions"));
             }
         }
     }

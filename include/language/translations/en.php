@@ -117,8 +117,10 @@ $lang['challenge_solved_first'] = 'First to solve this challenge!';
 $lang['challenge_solved_second'] = 'Second to solve this challenge!';
 $lang['challenge_solved_third'] = 'Third to solve this challenge!';
 
-$lang['correct_flag'] = 'Correct flag, you are awesome!';
-$lang['incorrect_flag'] = 'Incorrect flag, try again.';
+$lang['correct_flag'] = 'Correct flag';
+$lang['incorrect_flag'] = 'Incorrect flag';
+$lang['correct_flag_message'] = 'Congratulations! You got the flag!';
+$lang['incorrect_flag_message'] = 'Sorry! That wasn\'t correct';
 $lang['submission_awaiting_mark'] = 'Your submission is awaiting manual marking.';
 $lang['please_enter_flag'] = 'Please enter flag for challenge:';
 $lang['submit_flag'] = 'Submit flag';
@@ -217,3 +219,8 @@ $lang['list_exceptions'] = 'List exceptions';
 $lang['clear_exceptions'] = 'Clear exceptions';
 
 $lang['search'] = 'Search';
+
+$lang['discord_user_not_linked'] = 'Discord account is not linked. Is it guild member?';
+$lang['new_solver'] = '📢 {role} {user} solved challenge [{challenge_title}]('.Config::get('MELLIVORA_CONFIG_SITE_URL').'challenge?id={challenge_id}). Congratulations!';
+$lang['competitor'] = 'Competitor';
+$lang['non_competitor'] = 'Non-competitor';

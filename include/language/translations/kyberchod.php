@@ -115,15 +115,17 @@ $lang['challenge_details'] = 'Challenge details';
 $lang['no_challenge_for_id'] = 'No challenge found with this ID, or challenge not public';
 $lang['no_category_for_id'] = 'No category found with that ID, or category not public';
 $lang['challenge_not_available'] = 'This challenge is not yet available';
-$lang['challenge_not_solved'] = 'Tuto úlohu zatím nikdo nevyřešil.';
+$lang['challenge_not_solved'] = 'Tuto úlohu zatím nikdo ze soutěžících nevyřešil.';
 $lang['challenge_solved_by_percentage'] = 'Tuto úlohu dosud vyřešilo {solve_percentage}% soutěžících.';
 
 $lang['challenge_solved_first'] = 'First to solve this challenge!';
 $lang['challenge_solved_second'] = 'Second to solve this challenge!';
 $lang['challenge_solved_third'] = 'Third to solve this challenge!';
 
-$lang['correct_flag'] = 'Correct flag, you are awesome!';
-$lang['incorrect_flag'] = 'Incorrect flag, try again.';
+$lang['correct_flag'] = 'Správnej flag';
+$lang['incorrect_flag'] = 'Nesprávnej flag';
+$lang['correct_flag_message'] = 'Hdo humí, ten humí! Tuto bul ten správnej flag!';
+$lang['incorrect_flag_message'] = 'Hdepa! Tuto správně nebulo!';
 $lang['submission_awaiting_mark'] = 'Your submission is awaiting manual marking.';
 $lang['please_enter_flag'] = 'KyberChod{ }';
 $lang['submit_flag'] = 'Odeslat flag';
