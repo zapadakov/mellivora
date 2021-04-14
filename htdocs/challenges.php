@@ -123,7 +123,7 @@ $challenges = db_query_fetch_all('
     WHERE
        c.category = :category AND
        c.exposed = 1
-    ORDER BY c.available_from DESC',
+    ORDER BY c.available_from ASC',
     array(
         'user_id_1'=>$_SESSION['id'],
         'user_id_2'=>$_SESSION['id'],
@@ -143,7 +143,7 @@ foreach($challenges as $challenge) {
         echo '
         <div class="panel panel-default challenge-container">
             <div class="panel-heading">
-                <h4 class="challenge-head">',lang_get('hidden_challenge_worth'), number_format($challenge['points']), lang_get('points_short'), '</h4>
+                <h4 class="challenge-head">',lang_get('hidden_challenge'),'</h4>
             </div>
             <div class="panel-body">
                 <div class="challenge-description">

@@ -72,7 +72,7 @@ function challenges($categories) {
               available_from < '.$now.' AND
               category = :category AND
               exposed = 1
-            ORDER BY available_from DESC',
+            ORDER BY available_from ASC',
             array(
                 'category'=>$category['id']
             )
@@ -145,6 +145,30 @@ function challenges($categories) {
                 </td>
             </tr>';
         }
+        
+        $nextchallenges = db_query_fetch_all('
+          SELECT
+              available_from
+          FROM challenges
+          WHERE
+              available_from > '.$now.' AND
+              category = :category AND
+              exposed = 1
+          ORDER BY available_from ASC',
+          array(
+            'category'=>$category['id']
+          )
+        );
+
+        foreach ($nextchallenges as $nextchallenge) {
+            echo '
+            <tr>
+                <td colspan="4">
+                    ',lang_get('hidden_challenge_available_from', array('available_from' => date_time($nextchallenge['available_from']))),'
+                </td>
+            </tr>';
+        }
+
         echo '
         </tbody>
         </table>';

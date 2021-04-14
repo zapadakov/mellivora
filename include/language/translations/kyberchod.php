@@ -135,7 +135,9 @@ $lang['no_category_with_id'] = 'No category found with that ID';
 
 $lang['cat_unavailable_explanation'] = 'This category is not available. It is open from {available_from} ({available_from_time_remaining} from now) until {available_until} ({available_until_time_remaining} from now)';
 
-$lang['hidden_challenge_worth'] = 'Skrytá úloha za ';
+$lang['hidden_challenge'] = 'Skrytá úloha';
+$lang['hidden_challenge_available_from'] = 'Skrytá úloha dostupná od {available_from}';
+$lang['hidden_challenge_worth'] = 'Skrytá úloha za {pts}b';
 
 $lang['available_in'] = 'Available in {available_in} (from {from} until {to})';
 $lang['minimum_time_between_submissions'] = 'Minimální interval mezi pokusy: {time}.';

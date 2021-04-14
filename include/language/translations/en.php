@@ -130,6 +130,8 @@ $lang['no_category_with_id'] = 'No category found with that ID';
 
 $lang['cat_unavailable_explanation'] = 'This category is not available. It is open from {available_from} ({available_from_time_remaining} from now) until {available_until} ({available_until_time_remaining} from now)';
 
+$lang['hidden_challenge'] = 'Hidden challenge';
+$lang['hidden_challenge_available_from'] = 'Hidden challenge available from {available_from}';
 $lang['hidden_challenge_worth'] = 'Hidden challenge worth {pts}pts';
 
 $lang['available_in'] = 'Available in {available_in} (from {from} until {to})';
