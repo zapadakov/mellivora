@@ -16,12 +16,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $competing = (($_POST['country'] > 1) ? 1 : 0);
 
         if (strlen($_POST['discord_id']) == 18) {
+
             $user = db_select_one(
                 'users',
                 array('team_name'),
                 array('id'=>$_SESSION['id'])
             );
             $discord_user = link_discord_account($_POST['discord_id'], $user['team_name'], $competing);
+
+            if ($discord_user['id'] != 0) {
+                $solved_challenges = db_query_fetch_all('
+                    SELECT
+                        c.discord_id
+                    FROM challenges AS c
+                    INNER JOIN submissions AS s ON c.id = s.challenge
+                    WHERE
+                        s.user_id = :user_id AND
+                        s.correct = 1',
+                    array(
+                        'user_id'=>$_SESSION['id']
+                    )
+                );
+                unlock_discord_channels($solved_challenges, $discord_user['id']);
+            }
 
         } else {
             $discord_user['id'] = 0;

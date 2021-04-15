@@ -59,17 +59,19 @@ function create_discord_channel($name, $discord_category_id) {
     }
 }
 
-function unlock_discord_channel($discord_channel_id, $discord_user_id) {
+function unlock_discord_channels($discord_channels, $discord_user_id) {
     if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID')) {
         try {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
 
-            $client->channel->editChannelPermissions(array(
-                'channel.id' => $discord_channel_id,
-                'overwrite.id' => $discord_user_id,
-                'type' => 1, //user
-                'allow'=> 1024 //VIEW_CHANNEL
-            ));
+            foreach($discord_channels as $discord_channel) {
+                $client->channel->editChannelPermissions(array(
+                    'channel.id' => $discord_channel['discord_id'],
+                    'overwrite.id' => $discord_user_id,
+                    'type' => 1, //user
+                    'allow'=> 1024 //VIEW_CHANNEL
+                ));
+            }
 
         } catch (Exception $e) {
             message_error('Caught exception connecting to Discord: ' . $e->getMessage());

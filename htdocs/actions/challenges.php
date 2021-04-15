@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 )
             );
             if ($user['discord_id'] != 0) {
-                unlock_discord_channel($challenge['discord_id'], $user['discord_id']);
+                unlock_discord_channels(array(array('discord_id'=>$challenge['discord_id'])), $user['discord_id']);
             }
             send_discord_message(
                 'new_solver',
