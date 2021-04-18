@@ -223,6 +223,7 @@ $lang['clear_exceptions'] = 'Clear exceptions';
 $lang['search'] = 'Search';
 
 $lang['discord_user_not_linked'] = 'Discord account is not linked. Is it guild member?';
-$lang['new_solver'] = '📢 {role} {user} solved challenge [{challenge_title}]('.Config::get('MELLIVORA_CONFIG_SITE_URL').'challenge?id={challenge_id}). Congratulations!';
 $lang['competitor'] = 'Competitor';
 $lang['non_competitor'] = 'Non-competitor';
+$lang['new_solver'] = '📢 {role} {user} solved challenge [{challenge_title}]('.Config::get('MELLIVORA_CONFIG_SITE_URL').'challenge?id={challenge_id}). Congratulations!';
+$lang['new_submission'] = '{role} {user} sent {num_attempts}. attempt to solve challenge {challenge_title}. {result} {flag}.';

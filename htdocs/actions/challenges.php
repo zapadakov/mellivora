@@ -131,20 +131,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             )
         );
 
+        $user = db_select_one(
+            'users',
+            array(
+                'discord_id',
+                'team_name',
+                'competing'
+            ),
+            array(
+                'id' => $_SESSION['id']
+            )
+        );
         //unlock related Discord channel in case of correct submission
         if ($correct) {
             // get user information
-            $user = db_select_one(
-                'users',
-                array(
-                    'discord_id',
-                    'team_name',
-                    'competing'
-                ),
-                array(
-                    'id' => $_SESSION['id']
-                )
-            );
             if ($user['discord_id'] != 0) {
                 unlock_discord_channels(array(array('discord_id'=>$challenge['discord_id'])), $user['discord_id']);
             }
@@ -158,6 +158,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 )
             );
         }
+
+        send_discord_message(
+            'new_submission',
+            array(
+                'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
+                'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
+                'num_attempts' => $num_attempts+1,
+                'challenge_title' => $challenge['title'],
+                'result' => ($correct ? lang_get("correct_flag") : lang_get("incorrect_flag")),
+                'flag' => $_POST['flag']
+            )
+        );
 
         if (!$challenge['automark']) {
             redirect('challenges?status=manual');

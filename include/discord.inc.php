@@ -191,14 +191,20 @@ function link_discord_account($discord_user_id, $nick, $competing) {
 }
 
 function send_discord_message($type, $content) {
-    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_TOKEN')) {
+    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') &&
+        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_GENERAL_ID') &&
+        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_GENERAL_TOKEN') &&
+        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_SUBMISSIONS_ID') &&
+        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_SUBMISSIONS_TOKEN') &&
+        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_REGISTRATION_ID') &&
+        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_REGISTRATION_TOKEN')) {
         try {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
 
             if ($type == 'new_solver') {
                 $client->webhook->executeWebhook(array(
-                    'webhook.id' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_ID'),
-                    'webhook.token' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_TOKEN'),
+                    'webhook.id' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_GENERAL_ID'),
+                    'webhook.token' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_GENERAL_TOKEN'),
                     'content' => lang_get(
                         'new_solver',
                         array(
@@ -206,6 +212,23 @@ function send_discord_message($type, $content) {
                             'user' => $content['user'],
                             'challenge_id' => $content['challenge_id'],
                             'challenge_title' => $content['challenge_title']
+                        )
+                    )
+                ));
+            }
+            if ($type == 'new_submission') {
+                $client->webhook->executeWebhook(array(
+                    'webhook.id' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_SUBMISSIONS_ID'),
+                    'webhook.token' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_SUBMISSIONS_TOKEN'),
+                    'content' => lang_get(
+                        'new_submission',
+                        array(
+                            'role' => $content['role'],
+                            'user' => $content['user'],
+                            'num_attempts' => $content['num_attempts'],
+                            'challenge_title' => $content['challenge_title'],
+                            'result' => $content['result'],
+                            'flag' => $content['flag']
                         )
                     )
                 ));
