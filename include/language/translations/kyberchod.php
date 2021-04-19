@@ -230,5 +230,5 @@ $lang['search'] = 'Search';
 $lang['discord_user_not_linked'] = 'Propojení s Discord účtem se nezdařilo. Buď takový účet vůbec neexistuje, nebo není členem serveru.';
 $lang['competitor'] = 'Soutěžící';
 $lang['non_competitor'] = 'Kolemjdoucí';
-$lang['new_solver'] = '📢 {role} {user} má vyřešenou úlohu [{challenge_title}]('.Config::get('MELLIVORA_CONFIG_SITE_URL').'challenge?id={challenge_id}), gratulujeme!';
+$lang['new_solver'] = '📢 {role} {user} má vyřešenou úlohu [{challenge_title}](<'.Config::get('MELLIVORA_CONFIG_SITE_URL').'challenge?id={challenge_id}>), gratulujeme!';
 $lang['new_submission'] = '{role} {user} posílá {num_attempts}. řešení úlohy {challenge_title}. {result} {flag}.';
