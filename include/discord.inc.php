@@ -195,9 +195,7 @@ function send_discord_message($type, $content) {
         Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_GENERAL_ID') &&
         Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_GENERAL_TOKEN') &&
         Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_SUBMISSIONS_ID') &&
-        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_SUBMISSIONS_TOKEN') &&
-        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_REGISTRATION_ID') &&
-        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_REGISTRATION_TOKEN')) {
+        Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_SUBMISSIONS_TOKEN')) {
         try {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
 
