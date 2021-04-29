@@ -7,7 +7,7 @@ body a {
     color: #fff;
 }
 
-body a:hover {
+body a:hover, a:focus {
     color: #6c0;
 }
 
@@ -111,6 +111,14 @@ select {
     background-color: #789;
 }
 
+.page-header {
+    border-bottom: 1px solid #678;
+}
+
+.alert-warning a {
+    color: #6c0;
+}
+
 #footer {
     background-color: #234;
     border-top: 4px solid #345;
@@ -179,6 +187,3 @@ select {
 
 }
 */
-.page-header {
-    border-bottom: 1px solid #678;
-}
