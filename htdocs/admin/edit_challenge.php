@@ -118,7 +118,11 @@ form_file('file');
 form_hidden('action', 'upload_file');
 form_hidden('id', $_GET['id']);
 form_button_submit('Upload file');
-echo 'Max file size: ',bytes_to_pretty_size(max_file_upload_size());
+echo 'Max file size:
+    POST ', bytes_to_pretty_size(php_bytes(ini_get('post_max_size'))),', 
+    Upload ',bytes_to_pretty_size(php_bytes(ini_get('upload_max_filesize'))),', 
+    Mellivora ',bytes_to_pretty_size(Config::get('MELLIVORA_CONFIG_MAX_FILE_UPLOAD_SIZE')),', 
+    Result => ',bytes_to_pretty_size(max_file_upload_size());
 form_end();
 
 section_subhead('Hints');
