@@ -519,6 +519,16 @@ function register_account($email, $password, $team_name, $country, $type = null)
                     lang_get('your_password_was_set')
             )
         );
+        
+        send_discord_message(
+            'new_registration',
+            array(
+                'role' => ($competing == 1 ? lang_get("competitor") : lang_get("non_competitor")),
+                'user' => $team_name,
+                'email' => $email,
+                'ip' => get_ip(false)
+            )
+        );
 
         // send details to user
         send_email(array($email), $email_subject, $email_body);

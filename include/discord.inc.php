@@ -231,12 +231,28 @@ function send_discord_message($type, $content) {
                     )
                 ));
             }
+            if ($type == 'new_registration') {
+                $client->webhook->executeWebhook(array(
+                    'webhook.id' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_REGISTRATION_ID'),
+                    'webhook.token' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_REGISTRATION_TOKEN'),
+                    'content' => lang_get(
+                        'new_registration',
+                        array(
+                            'role' => $content['role'],
+                            'user' => $content['user'],
+                            'email' => $content['email'],
+                            'ip' => $content['ip']
+                        )
+                    )
+                ));
+            }
 
         } catch (Exception $e) {
-            message_error('Caught exception connecting to Discord: ' . $e->getMessage());
+            log_exception($e);
+            //message_error('Caught exception connecting to Discord: ' . $e->getMessage());
         }
     }
     else {
-        message_error('Set Discord parameters in config!');
+        //message_error('Set Discord parameters in config!');
     }
 }
