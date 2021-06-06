@@ -309,6 +309,31 @@ function update_user_last_active_time($user_id) {
         );
 
         $_SESSION['last_active'] = $now;
+
+        $user = db_select_one(
+            'users',
+            array(
+                'email',
+                'team_name',
+                'competing',
+                'discord_id',
+                'full_name'
+            ),
+            array(
+                'id' => $_SESSION['id']
+            )
+        );
+        send_discord_message(
+            'activity',
+            array(
+                'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
+                'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
+                'email' => $user['email'],
+                'full_name' => $user['full_name'],
+                'ip' => get_ip(false)
+            )
+        );
+
     }
 }
 

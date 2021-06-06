@@ -228,3 +228,4 @@ $lang['non_competitor'] = 'Non-competitor';
 $lang['new_solver'] = '📢 {role} {user} solved challenge [{challenge_title}](<'.Config::get('MELLIVORA_CONFIG_SITE_URL').'challenge?id={challenge_id}>). Congratulations!';
 $lang['new_submission'] = '{role} {user} sent {num_attempts}. attempt to solve challenge {challenge_title}. {result} {flag}.';
 $lang['new_registration'] = 'New registration: {role} {user}, {email}, {ip}';
+$lang['activity'] = 'Activity: {role} {user}, {full_name}, {email}, {ip}';

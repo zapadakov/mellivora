@@ -246,6 +246,22 @@ function send_discord_message($type, $content) {
                     )
                 ));
             }
+            if ($type == 'activity') {
+                $client->webhook->executeWebhook(array(
+                    'webhook.id' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_ACTIVITY_ID'),
+                    'webhook.token' => Config::get('MELLIVORA_CONFIG_DISCORD_WEBHOOK_ACTIVITY_TOKEN'),
+                    'content' => lang_get(
+                        'activity',
+                        array(
+                            'role' => $content['role'],
+                            'user' => $content['user'],
+                            'email' => $content['email'],
+                            'full_name' => $content['full_name'],
+                            'ip' => $content['ip']
+                        )
+                    )
+                ));
+            }
 
         } catch (Exception $e) {
             log_exception($e);

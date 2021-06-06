@@ -233,3 +233,4 @@ $lang['non_competitor'] = 'Kolemjdoucí';
 $lang['new_solver'] = '📢 {role} {user} má vyřešenou úlohu [{challenge_title}](<'.Config::get('MELLIVORA_CONFIG_SITE_URL').'challenge?id={challenge_id}>), gratulujeme!';
 $lang['new_submission'] = '{role} {user} posílá {num_attempts}. řešení úlohy {challenge_title}. {result} {flag}.';
 $lang['new_registration'] = 'Nová registrace: {role} {user}, {email}, {ip}';
+$lang['activity'] = 'Aktivita: {role} {user}, {full_name}, {email}, {ip}';
