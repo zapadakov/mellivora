@@ -123,7 +123,7 @@ function challenges($categories) {
                    s.correct = 1 AND
                    s.challenge = :challenge
                 ORDER BY s.added ASC
-                LIMIT 3',
+                LIMIT 1',
                 array(
                     'challenge'=>$challenge['id']
                 )
