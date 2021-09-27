@@ -10,7 +10,7 @@ CREATE TABLE categories (
   available_from int(10) unsigned NOT NULL DEFAULT '0',
   available_until int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE challenges (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -31,7 +31,7 @@ CREATE TABLE challenges (
   relies_on int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (id),
   KEY category (category)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE cookie_tokens (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -43,7 +43,7 @@ CREATE TABLE cookie_tokens (
   ip_last int(10) unsigned NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY user_t_ts (user_id,token,token_series)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE countries (
   id smallint(5) unsigned NOT NULL AUTO_INCREMENT,
@@ -51,7 +51,7 @@ CREATE TABLE countries (
   country_code char(2) NOT NULL DEFAULT '',
   PRIMARY KEY (id),
   UNIQUE KEY short (country_code)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE dynamic_pages (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -60,7 +60,7 @@ CREATE TABLE dynamic_pages (
   visibility enum('public','private','both') NOT NULL DEFAULT 'public',
   min_user_class tinyint(3) unsigned NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE dynamic_menu (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -73,7 +73,7 @@ CREATE TABLE dynamic_menu (
   priority smallint(5) unsigned NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY permalink (permalink)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE exceptions (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -88,7 +88,7 @@ CREATE TABLE exceptions (
   user_agent text NOT NULL,
   unread BOOLEAN NOT NULL DEFAULT TRUE,
 PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE files (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -103,7 +103,7 @@ CREATE TABLE files (
   PRIMARY KEY (id),
   KEY challenge (challenge),
   UNIQUE KEY (download_key)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE hints (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -114,7 +114,7 @@ CREATE TABLE hints (
   body text NOT NULL,
   PRIMARY KEY (id),
   KEY challenge (challenge)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE interest (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -124,7 +124,7 @@ CREATE TABLE interest (
   secret char(40) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY email (email)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE ip_log (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -135,7 +135,7 @@ CREATE TABLE ip_log (
   times_used int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (id),
   UNIQUE KEY user_ip (user_id,ip)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE news (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -144,7 +144,7 @@ CREATE TABLE news (
   title varchar(255) NOT NULL,
   body text NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE recruit (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -155,7 +155,7 @@ CREATE TABLE recruit (
   city varchar(255) NOT NULL,
   country char(2) NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE reset_password (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -165,7 +165,7 @@ CREATE TABLE reset_password (
   auth_key char(64) NOT NULL,
   PRIMARY KEY (id),
   KEY user_key (user_id,auth_key)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE restrict_email (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -176,7 +176,7 @@ CREATE TABLE restrict_email (
   white tinyint(1) NOT NULL DEFAULT '1',
   priority int(10) unsigned NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE submissions (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -190,7 +190,7 @@ CREATE TABLE submissions (
   KEY challenge (challenge),
   KEY user_id (user_id),
   KEY challenge_user_id (challenge,user_id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE two_factor_auth (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -198,7 +198,7 @@ CREATE TABLE two_factor_auth (
   secret char(32) NOT NULL,
   PRIMARY KEY (id),
   UNIQUE KEY user_id (user_id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE users (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -218,11 +218,11 @@ CREATE TABLE users (
   UNIQUE KEY email (email),
   UNIQUE KEY team_name (team_name),
   UNIQUE KEY (download_key)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE user_types (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   title varchar(255) NOT NULL,
   description text NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
