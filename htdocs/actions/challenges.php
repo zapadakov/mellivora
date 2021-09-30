@@ -145,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         //unlock related Discord channel in case of correct submission
         if ($correct) {
             // get user information
-            if ($user['discord_id'] != 0) {
+            if (($user['discord_id'] != 0) and ($challenge['discord_id']) != 0) {
                 unlock_discord_channels(array(array('discord_id'=>$challenge['discord_id'])), $user['discord_id']);
             }
             send_discord_message(
