@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     INNER JOIN submissions AS s ON c.id = s.challenge
                     WHERE
                         s.user_id = :user_id AND
+                        NOT c.discord_id = 0 AND
                         s.correct = 1',
                     array(
                         'user_id'=>$_SESSION['id']
