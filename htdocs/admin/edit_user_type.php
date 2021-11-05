@@ -19,6 +19,7 @@ $user_type = db_select_one(
 form_start(Config::get('MELLIVORA_CONFIG_SITE_ADMIN_RELPATH') . 'actions/edit_user_type');
 form_input_text('Title', $user_type['title']);
 form_textarea('Description', $user_type['description']);
+form_input_checkbox('Scoreboard', $user_type['scoreboard']);
 form_hidden('action', 'edit');
 form_hidden('id', $_GET['id']);
 form_button_submit('Save changes');

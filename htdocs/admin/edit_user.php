@@ -15,7 +15,8 @@ $user = db_select_one(
         'enabled',
         'competing',
         'country_id',
-        'discord_id'
+        'discord_id',
+        'user_type'
     ),
     array('id' => $_GET['id'])
 );
@@ -32,6 +33,9 @@ form_input_text('Full name', $user['full_name']);
 
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name');
+
+$opts = db_query_fetch_all('SELECT * FROM user_types');
+form_select($opts, 'Type', 'id', $user['user_type'], 'title', '', lang_get('select_team_type'));
 
 form_input_text('Discord ID', $user['discord_id']);
 

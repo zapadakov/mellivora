@@ -464,8 +464,13 @@ function register_account($email, $password, $team_name, $country, $type = null)
         message_error(lang_get('please_fill_details_correctly'));
     }
 
-    if (isset($type) && !is_valid_id($type)) {
-        message_error(lang_get('invalid_team_type'));
+    $num_types = db_select_one(
+        'user_types',
+        array('COUNT(*) AS num')
+    );
+
+    if (!isset($type) || !is_valid_id($type) || $type > $num_types['num']) {
+        message_error(lang_get('please_supply_category'));
     }
 
     if (strlen($team_name) > Config::get('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH') || strlen($team_name) < Config::get('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH')) {

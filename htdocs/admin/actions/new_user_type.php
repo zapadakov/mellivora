@@ -14,7 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           'user_types',
           array(
              'title'=>$_POST['title'],
-             'description'=>$_POST['description']
+             'description'=>$_POST['description'],
+             'scoreboard'=>$_POST['scoreboard']
           )
         );
 

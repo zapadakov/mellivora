@@ -45,10 +45,10 @@ $lang['email_password_on_signup'] = 'Heslo bude vygenerováno a zasláno na zada
 
 $lang['register'] = 'Registrace';
 $lang['register_your_team'] = 'Registrace';
-$lang['account_signup_information'] = 'Soutěžit mohou jen ti, kdo mají v profilu vybránu svou školu. Chybí-li ve výběru, registruj se pod Czech Republic (tyto účty nesoutěží). Ozvi se pak na Discordu nebo emailem a školu doplníme. {password_information}';
+$lang['account_signup_information'] = 'Soutěžit o ceny mohou jen ti, kdo mají v profilu vybranou svou školu. Chybí-li ve výběru, registruj se pod Czech Republic. Ozvi se pak případně na Discordu nebo e-mailem a školu doplníme. {password_information}';
 $lang['team_name'] = 'Přezdívka';
 $lang['full_name'] = 'Celé jméno';
-$lang['select_team_type'] = 'Vyber prosím soutěžní kategorii';
+$lang['select_team_type'] = 'Soutěžní kategorie';
 $lang['registration_closed'] = 'Registration is currently closed, but you can still <a href="interest">register your interest for upcoming events</a>.';
 $lang['please_fill_details_correctly'] = 'Please fill in all the details correctly.';
 $lang['invalid_team_type'] = 'That does not look like a valid team type.';
@@ -101,7 +101,8 @@ $lang['forgotten_password'] = 'Zapomenuté heslo';
 
 $lang['please_request_view'] = 'Please request a view';
 $lang['please_request_page'] = 'Please request a page to show';
-$lang['please_supply_country_code'] = 'Please supply a valid country code';
+$lang['please_supply_country_code'] = 'Vyber prosím svou školu nebo Czech Republic';
+$lang['please_supply_category'] = 'Vyber prosím soutěžní kategorii';
 $lang['not_a_valid_link'] = 'That is not a valid link.';
 $lang['not_a_valid_email'] = 'That doesn\'t look like an email. Please go back and double check the form.';
 $lang['please_select_country'] = 'Vyber svou školu';

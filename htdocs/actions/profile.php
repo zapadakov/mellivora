@@ -51,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'full_name'=>$_POST['full_name'],
              'country_id'=>$_POST['country'],
              'discord_id'=>$discord_user['id'],
-             'competing'=>$competing
+             'competing'=>$competing,
+             'user_type'=>$_POST['type']
           ),
           array(
              'id'=>$_SESSION['id']

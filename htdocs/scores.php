@@ -20,7 +20,8 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
         'user_types',
         array(
             'id',
-            'title'
+            'title',
+            'scoreboard'
         )
     );
 
@@ -57,38 +58,39 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
     // at least one ser type
     else {
         foreach ($user_types as $user_type) {
-            section_head(
-                htmlspecialchars($user_type['title']) . ' ' . lang_get('scoreboard'),
-                '<a href="'.Config::get('MELLIVORA_CONFIG_SITE_URL').'json?view=scoreboard&user_type='.$user_type['id'].'">
-                    <img src="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/json.png" title="View json" alt="json" class="discreet-inline small-icon" />
-                 </a>',
-                false
-            );
+            if ($user_type['scoreboard']) {
+                section_head(
+                    htmlspecialchars($user_type['title']),
+                    '<a href="'.Config::get('MELLIVORA_CONFIG_SITE_URL').'json?view=scoreboard&user_type='.$user_type['id'].'">
+                        <img src="'.Config::get('MELLIVORA_CONFIG_SITE_URL_STATIC_RESOURCES').'img/json.png" title="View json" alt="json" class="discreet-inline small-icon" />
+                    </a>',
+                    false
+                );
 
-            $scores = db_query_fetch_all('
-            SELECT
-               u.id AS user_id,
-               u.team_name,
-               co.id AS country_id,
-               co.country_name,
-               co.country_code,
-               SUM(c.points) AS score,
-               MAX(s.added) AS tiebreaker
-            FROM users AS u
-            LEFT JOIN countries AS co ON co.id = u.country_id
-            LEFT JOIN submissions AS s ON u.id = s.user_id AND s.correct = 1
-            LEFT JOIN challenges AS c ON c.id = s.challenge
-            WHERE
-              u.competing = 1 AND
-              u.user_type = :user_type
-            GROUP BY u.id
-            ORDER BY score DESC, tiebreaker ASC',
-                array(
-                    'user_type'=>$user_type['id']
-                )
-            );
+                $scores = db_query_fetch_all('
+                SELECT
+                u.id AS user_id,
+                u.team_name,
+                co.id AS country_id,
+                co.country_name,
+                co.country_code,
+                SUM(c.points) AS score,
+                MAX(s.added) AS tiebreaker
+                FROM users AS u
+                LEFT JOIN countries AS co ON co.id = u.country_id
+                LEFT JOIN submissions AS s ON u.id = s.user_id AND s.correct = 1
+                LEFT JOIN challenges AS c ON c.id = s.challenge
+                WHERE
+                u.user_type = :user_type
+                GROUP BY u.id
+                ORDER BY score DESC, tiebreaker ASC',
+                    array(
+                        'user_type'=>$user_type['id']
+                    )
+                );
 
-            scoreboard($scores);
+                scoreboard($scores);
+            }
         }
     }
 

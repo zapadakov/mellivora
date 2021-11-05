@@ -22,7 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'enabled'=>$_POST['enabled'],
              'competing'=>$_POST['competing'],
              'country_id'=>$_POST['country'],
-             'discord_id'=>$_POST['discord_id']
+             'discord_id'=>$_POST['discord_id'],
+             'user_type'=>$_POST['type']
           ),
           array(
              'id'=>$_POST['id']

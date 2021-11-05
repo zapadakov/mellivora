@@ -224,5 +224,6 @@ CREATE TABLE user_types (
   id int(10) unsigned NOT NULL AUTO_INCREMENT,
   title varchar(255) NOT NULL,
   description text NOT NULL,
+  scoreboard tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;

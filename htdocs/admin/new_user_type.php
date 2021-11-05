@@ -13,6 +13,7 @@ message_inline_blue('User types are not required. You can add them if you wish t
 form_start(Config::get('MELLIVORA_CONFIG_SITE_ADMIN_RELPATH') . 'actions/new_user_type');
 form_input_text('Title');
 form_textarea('Description');
+form_input_checkbox('Scoreboard', true);
 form_hidden('action', 'new');
 form_button_submit('Create new user type');
 form_end();
