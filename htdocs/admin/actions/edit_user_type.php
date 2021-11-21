@@ -16,7 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           array(
              'title'=>$_POST['title'],
              'description'=>$_POST['description'],
-             'scoreboard'=>$_POST['scoreboard']
+             'scoreboard'=>$_POST['scoreboard'],
+             'discord_id'=>$_POST['discord_id']
           ),
           array(
              'id'=>$_POST['id']
