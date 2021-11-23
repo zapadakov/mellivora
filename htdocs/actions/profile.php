@@ -14,16 +14,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($_POST['action'] == 'edit') {
 
         $competing = (($_POST['country'] > 1) ? 1 : 0);
+        $user_type = (($_POST['type'] > 0) ? $_POST['type'] : 0);
 
         if (strlen($_POST['discord_id']) == 18) {
 
             $user = db_select_one(
                 'users',
-                array('team_name'),
+                array(
+                    'team_name',
+                    'user_type'
+                ),
                 array('id'=>$_SESSION['id'])
             );
-            $discord_user = link_discord_account($_POST['discord_id'], $user['team_name'], $competing);
-
+            $user_types = db_select_all(
+                'user_types',
+                array(
+                    'id',
+                    'discord_id'
+                )
+            );
+            $discord_user = link_discord_account(
+                $_POST['discord_id'],
+                $user['team_name'],
+                $user['user_type'],
+                $user_type,
+                $user_types
+            );
             if ($discord_user['id'] != 0) {
                 $solved_challenges = db_query_fetch_all('
                     SELECT
@@ -52,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'country_id'=>$_POST['country'],
              'discord_id'=>$discord_user['id'],
              'competing'=>$competing,
-             'user_type'=>$_POST['type']
+             'user_type'=>$user_type
           ),
           array(
              'id'=>$_SESSION['id']

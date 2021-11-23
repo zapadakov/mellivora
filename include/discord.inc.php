@@ -126,8 +126,8 @@ function get_discord_member($discord_user_id) {
     }
 }
 
-function link_discord_account($discord_user_id, $nick, $competing) {
-    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_NON_COMPETITOR_ROLE_ID') && Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID')) {
+function link_discord_account($discord_user_id, $nick, $user_type_old, $user_type_new, $user_types) {
+    if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID')) {
         try {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
 
@@ -147,34 +147,25 @@ function link_discord_account($discord_user_id, $nick, $competing) {
                         'user.id' => intval($discord_user_id),
                         'nick' => $nick
                     ));
-                    //check competitor role
-                    $competitor = array(
-                        'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
-                        'user.id' => intval($discord_user_id),
-                        'role.id' => Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID')
-                    );
-                    $non_competitor = array(
-                        'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
-                        'user.id' => intval($discord_user_id),
-                        'role.id' => Config::get('MELLIVORA_CONFIG_DISCORD_NON_COMPETITOR_ROLE_ID')
-                    );
-                    if ($competing == 1) {
-                        if (!in_array(Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID'), $member->roles)) {
-                            $client->guild->addGuildMemberRole($competitor);
-                        }
-                        if (in_array(Config::get('MELLIVORA_CONFIG_DISCORD_NON_COMPETITOR_ROLE_ID'), $member->roles)) {
-                            $client->guild->removeGuildMemberRole($non_competitor);
-                        }
-                    }
-                    if ($competing == 0) {
-                        if (!in_array(Config::get('MELLIVORA_CONFIG_DISCORD_NON_COMPETITOR_ROLE_ID'), $member->roles)) {
-                            $client->guild->addGuildMemberRole($non_competitor);
-                        }
-                        if (in_array(Config::get('MELLIVORA_CONFIG_DISCORD_COMPETITOR_ROLE_ID'), $member->roles)) {
-                            $client->guild->removeGuildMemberRole($competitor);
+                    //link user_type to discord role
+                    if ((!empty($user_types)) && ($user_type_new != $user_type_old)) {
+                        foreach($user_types as $user_type) {
+                            if(($user_type_new == $user_type['id']) && ($user_type['discord_id'] > 0)) {
+                                $client->guild->addGuildMemberRole(array(
+                                    'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                                    'user.id' => intval($discord_user_id),
+                                    'role.id' => intval($user_type['discord_id'])
+                                ));
+                            }
+                            else if (($user_type_old == $user_type['id']) && (in_array($user_type['discord_id'], $member->roles))) {
+                                $client->guild->removeGuildMemberRole(array(
+                                    'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                                    'user.id' => intval($discord_user_id),
+                                    'role.id' => intval($user_type['discord_id'])
+                                ));
+                            }
                         }
                     }
-
                     return array(
                         'id' => $user->id
                     );
