@@ -148,22 +148,20 @@ function link_discord_account($discord_user_id, $nick, $user_type_old, $user_typ
                         'nick' => $nick
                     ));
                     //link user_type to discord role
-                    if ((!empty($user_types)) && ($user_type_new != $user_type_old)) {
-                        foreach($user_types as $user_type) {
-                            if(($user_type_new == $user_type['id']) && ($user_type['discord_id'] > 0)) {
-                                $client->guild->addGuildMemberRole(array(
-                                    'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
-                                    'user.id' => intval($discord_user_id),
-                                    'role.id' => intval($user_type['discord_id'])
-                                ));
-                            }
-                            else if (($user_type_old == $user_type['id']) && (in_array($user_type['discord_id'], $member->roles))) {
-                                $client->guild->removeGuildMemberRole(array(
-                                    'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
-                                    'user.id' => intval($discord_user_id),
-                                    'role.id' => intval($user_type['discord_id'])
-                                ));
-                            }
+                    foreach($user_types as $user_type) {
+                        if(($user_type_new == $user_type['id']) && ($user_type['discord_id'] > 0)) {
+                            $client->guild->addGuildMemberRole(array(
+                                'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                                'user.id' => intval($discord_user_id),
+                                'role.id' => intval($user_type['discord_id'])
+                            ));
+                        }
+                        else if (($user_type_old == $user_type['id']) && (in_array($user_type['discord_id'], $member->roles))) {
+                            $client->guild->removeGuildMemberRole(array(
+                                'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
+                                'user.id' => intval($discord_user_id),
+                                'role.id' => intval($user_type['discord_id'])
+                            ));
                         }
                     }
                     return array(
