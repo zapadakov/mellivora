@@ -41,68 +41,93 @@ if (cache_start(CONST_CACHE_NAME_CHALLENGE . $_GET['id'], Config::get('MELLIVORA
         );
     }
 
-    $submissions = db_query_fetch_all(
-        'SELECT
-            u.id AS user_id,
-            u.team_name,
-            s.added,
-            c.available_from
-          FROM users AS u
-          LEFT JOIN submissions AS s ON s.user_id = u.id
-          LEFT JOIN challenges AS c ON c.id = s.challenge
-          WHERE
-             u.competing = 1 AND
-             s.challenge = :id AND
-             s.correct = 1
-          ORDER BY s.added ASC',
-        array('id' => $_GET['id'])
-    );
-
     section_head($challenge['title']);
 
-    $num_correct_solves = count($submissions);
+    $user_types = db_select_all(
+        'user_types',
+        array(
+            'id',
+            'title',
+            'scoreboard'
+        )
+    );
 
-    if (!$num_correct_solves) {
-        echo lang_get('challenge_not_solved');
-    }
-
-    else {
-        $user_count = get_num_participating_users();
-        echo lang_get(
-            'challenge_solved_by_percentage',
-            array(
-                'solve_percentage' => number_format((($num_correct_solves / $user_count) * 100), 1)
-            )
+    // no user types
+    if (empty($user_types)) {
+        $submissions = db_query_fetch_all(
+            'SELECT
+                u.id AS user_id,
+                u.team_name,
+                s.added,
+                c.available_from
+              FROM users AS u
+              LEFT JOIN submissions AS s ON s.user_id = u.id
+              LEFT JOIN challenges AS c ON c.id = s.challenge
+              WHERE
+                 u.competing = 1 AND
+                 s.challenge = :id AND
+                 s.correct = 1
+              ORDER BY s.added ASC',
+            array('id' => $_GET['id'])
         );
-
-        echo '
-       <table class="challenge-table table table-striped table-hover">
-       <thead>
-       <tr>
-         <th>',lang_get('position'),'</th>
-         <th>',lang_get('team'),'</th>
-         <th>',lang_get('solved'),'</th>
-       </tr>
-       </thead>
-       <tbody>
-       ';
-        $i = 1;
-        foreach ($submissions as $submission) {
-            echo '
-              <tr>
-                <td>', number_format($i), ' ', get_position_medal($i), '</td>
-                <td class="team-name"><a href="user.php?id=', htmlspecialchars($submission['user_id']), '">', htmlspecialchars($submission['team_name']), '</a></td>
-                <td>', time_elapsed($submission['added'], $submission['available_from']), ' ', lang_get('after_release'), ' (', date_time($submission['added']), ')</td>
-              </tr>
-              ';
-            $i++;
+    
+        $num_correct_solves = count($submissions);
+    
+        if (!$num_correct_solves) {
+            echo lang_get('challenge_not_solved');
+        }
+    
+        else {
+            $user_count = get_num_participating_users();
+            echo lang_get(
+                'challenge_solved_by_percentage',
+                array(
+                    'solve_percentage' => number_format((($num_correct_solves / $user_count) * 100), 1)
+                )
+            );
+    
+            print_challenge_scoreboard($submissions);
+        }    
+    }
+    // at least one user type
+    else {
+        foreach ($user_types as $user_type) {
+            if ($user_type['scoreboard']) {
+                section_subhead($user_type['title']);
+                $submissions = db_query_fetch_all(
+                    'SELECT
+                        u.id AS user_id,
+                        u.team_name,
+                        s.added,
+                        c.available_from
+                      FROM users AS u
+                      LEFT JOIN submissions AS s ON s.user_id = u.id
+                      LEFT JOIN challenges AS c ON c.id = s.challenge
+                      WHERE
+                         u.user_type = :user_type AND
+                         s.challenge = :id AND
+                         s.correct = 1
+                      ORDER BY s.added ASC',
+                    array(
+                        'id' => $_GET['id'],
+                        'user_type'=>$user_type['id']
+                    )
+                );
+            
+                $num_correct_solves = count($submissions);
+            
+                if (!$num_correct_solves) {
+                    echo lang_get('challenge_not_solved');
+                }
+            
+                else {
+                    print_challenge_scoreboard($submissions);
+                }  
+            }
         }
 
-        echo '
-       </tbody>
-       </table>
-         ';
     }
+
 
     cache_end(CONST_CACHE_NAME_CHALLENGE . $_GET['id']);
 }

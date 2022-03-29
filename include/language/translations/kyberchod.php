@@ -116,7 +116,7 @@ $lang['challenge_details'] = 'Challenge details';
 $lang['no_challenge_for_id'] = 'No challenge found with this ID, or challenge not public';
 $lang['no_category_for_id'] = 'No category found with that ID, or category not public';
 $lang['challenge_not_available'] = 'This challenge is not yet available';
-$lang['challenge_not_solved'] = 'Tuto úlohu zatím nikdo ze soutěžících nevyřešil.';
+$lang['challenge_not_solved'] = 'Tuto úlohu zatím nikdo nevyřešil.';
 $lang['challenge_solved_by_percentage'] = 'Tuto úlohu dosud vyřešilo {solve_percentage}% soutěžících.';
 
 $lang['challenge_solved_first'] = 'First to solve this challenge!';

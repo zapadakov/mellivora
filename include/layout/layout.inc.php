@@ -6,6 +6,7 @@ require(CONST_PATH_LAYOUT . 'user.inc.php');
 require(CONST_PATH_LAYOUT . 'forms.inc.php');
 require(CONST_PATH_LAYOUT . 'challenges.inc.php');
 require(CONST_PATH_LAYOUT . 'dynamic.inc.php');
+require(CONST_PATH_LAYOUT . 'challenge.inc.php');
 
 // set global head_sent variable
 $head_sent = false;
