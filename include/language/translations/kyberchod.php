@@ -45,7 +45,7 @@ $lang['email_password_on_signup'] = 'Heslo bude vygenerováno a zasláno na zada
 
 $lang['register'] = 'Registrace';
 $lang['register_your_team'] = 'Registrace';
-$lang['account_signup_information'] = 'Soutěžit o ceny mohou jen ti, kdo mají v profilu vybranou svou školu. Chybí-li ve výběru, registruj se pod Czech Republic. Ozvi se pak případně na Discordu nebo e-mailem a školu doplníme. {password_information}';
+$lang['account_signup_information'] = 'Vítáme všechny zájemce o řešení úloh KyberChod CTF. Soutěžit o ceny mohou jen ti, kdo jsou z Plzeňského kraje a/nebo jsou žáky školy z Plzeňského kraje. Chybí-li škola ve výběru, registruj se pod Czech Republic. Ozvi se pak případně na Discordu nebo e-mailem a školu doplníme. {password_information}';
 $lang['team_name'] = 'Přezdívka';
 $lang['full_name'] = 'Celé jméno';
 $lang['select_team_type'] = 'Soutěžní kategorie';
