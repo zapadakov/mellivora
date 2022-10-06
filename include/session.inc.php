@@ -508,7 +508,7 @@ function register_account($email, $password, $team_name, $country, $type = null)
     }
 
     $competing = 0;
-    if($_POST['country'] > 1) {
+    if($_POST['type'] == 1) {
         $competing = 1;
     }
 

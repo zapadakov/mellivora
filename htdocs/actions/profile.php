@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'edit') {
 
-        $competing = (($_POST['country'] > 1) ? 1 : 0);
+        $competing = (($_POST['type'] == 1) ? 1 : 0);
         $user_type = (($_POST['type'] > 0) ? $_POST['type'] : 0);
 
         if (strlen($_POST['discord_id']) == 18) {
