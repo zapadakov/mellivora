@@ -142,23 +142,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'id' => $_SESSION['id']
             )
         );
-        //unlock related Discord channel in case of correct submission
+        
         if ($correct) {
-            // get user information
-            if (($user['discord_id'] != 0) and ($challenge['discord_id']) != 0) {
+            //unlock related Discord channel in case of correct submission (if the channel exists)
+            if (($user['discord_id'] != 0) and ($challenge['discord_id'] != 0)) {
                 unlock_discord_channels(array(array('discord_id'=>$challenge['discord_id'])), $user['discord_id']);
             }
-            send_discord_message(
-                'new_solver',
-                array(
-                    'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
-                    'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
-                    'challenge_id' => $_POST['challenge'],
-                    'challenge_title' => $challenge['title']
-                )
-            );
+            //send congrat to Discord ctf channel
+            if ($user['competing'] == 1) {
+                send_discord_message(
+                    'new_solver',
+                    array(
+                        'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
+                        'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
+                        'challenge_id' => $_POST['challenge'],
+                        'challenge_title' => $challenge['title']
+                    )
+                );
+            }
         }
 
+        //send submission details to Discord admin channel
         send_discord_message(
             'new_submission',
             array(
