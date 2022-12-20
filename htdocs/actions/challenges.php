@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 unlock_discord_channels(array(array('discord_id'=>$challenge['discord_id'])), $user['discord_id']);
             }
             //send congrat to Discord ctf channel
-            if ($user['competing'] == 1) {
+            //if ($user['competing'] == 1) {
                 send_discord_message(
                     'new_solver',
                     array(
@@ -159,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         'challenge_title' => $challenge['title']
                     )
                 );
-            }
+            //}
         }
 
         //send submission details to Discord admin channel
