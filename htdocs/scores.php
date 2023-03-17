@@ -13,8 +13,8 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
     $now = time();
 
     echo '
-    <div class="row">
-        <div class="col-lg-6">';
+    <div class="row">';/*
+        <div class="col-lg-6">';*/
 
     $user_types = db_select_all(
         'user_types',
@@ -27,6 +27,8 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
 
     // no user types
     if (empty($user_types)) {
+        echo '
+        <div class="col-lg-6">';
         section_head(
             lang_get('scoreboard'),
             '<a href="'.Config::get('MELLIVORA_CONFIG_SITE_URL').'json?view=scoreboard">
@@ -54,11 +56,15 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
         );
 
         scoreboard($scores);
+        echo '
+        </div>  <!-- / span6 -->';
     }
     // at least one ser type
     else {
         foreach ($user_types as $user_type) {
             if ($user_type['scoreboard']) {
+                echo '
+                <div class="col-lg-4">';
                 section_head(
                     htmlspecialchars($user_type['title']),
                     '<a href="'.Config::get('MELLIVORA_CONFIG_SITE_URL').'json?view=scoreboard&user_type='.$user_type['id'].'">
@@ -90,14 +96,16 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
                 );
 
                 scoreboard($scores);
+                echo '
+                </div>  <!-- / span6 -->';
             }
         }
     }
-
+/*
     echo '
-        </div>  <!-- / span6 -->
-
-        <div class="col-lg-6">
+        </div>  <!-- / span6 -->*/
+    echo '
+        <div class="col-lg-4">
         ';
 
     section_head(lang_get('challenges'));

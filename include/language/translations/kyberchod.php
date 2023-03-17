@@ -151,7 +151,7 @@ $lang['no_reset_data'] = 'No reset data found.';
 
 $lang['scoreboard'] = 'Výsledky';
 $lang['first_solvers'] = 'Nejrychlejší';
-$lang['percentage_solvers'] = 'Vyřešilo';
+$lang['percentage_solvers'] = '%';
 $lang['unsolved'] = 'zatím nikdo';
 
 $lang['user_details'] = 'User details';

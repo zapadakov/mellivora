@@ -55,7 +55,7 @@ function challenges($categories) {
               <th>',htmlspecialchars($category['title']),'</th>
               <th class="center">',lang_get('points'),'</th>
               <th class="center"><span class="has-tooltip" data-toggle="tooltip" data-placement="top" title="% of actively participating users">',lang_get('percentage_solvers'),'</span></th>
-              <th>',lang_get('first_solvers'),'</th>
+              <!--<th>',lang_get('first_solvers'),'</th>-->
             </tr>
           </thead>
           <tbody>
@@ -110,7 +110,7 @@ function challenges($categories) {
                     ',number_format($num_participating_users ? ($num_solvers['num'] / $num_participating_users) * 100 : 0),'%
                 </td>
 
-                <td class="team-name">';
+                <!--<td class="team-name">';
 
             $users = db_query_fetch_all('
                 SELECT
@@ -142,7 +142,7 @@ function challenges($categories) {
             }
 
             echo '
-                </td>
+                </td>-->
             </tr>';
         }
         

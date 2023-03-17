@@ -175,6 +175,10 @@ select {
     height: 64px;
 }
 
+.team-table .team-name {
+    max-width: 175px;
+}
+
 /**
     Challenges page
 **/
