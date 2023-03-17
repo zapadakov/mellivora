@@ -5,6 +5,7 @@ require('../include/mellivora.inc.php');
 enforce_authentication();
 
 $now = time();
+$priority = 0;
 
 head('Challenges');
 
@@ -25,12 +26,13 @@ $categories = db_select_all(
         'title',
         'description',
         'available_from',
-        'available_until'
+        'available_until',
+        'priority'
     ),
     array(
         'exposed'=>1
     ),
-    'available_from DESC'
+    'available_from ASC'
 );
 
 // determine which category to display
@@ -57,11 +59,14 @@ if (isset($_GET['category'])) {
 
 } else {
     // if no category is selected, display
-    // the first available category
+    // the available category
+    // with highest priority
     foreach ($categories as $cat) {
         if ($now > $cat['available_from'] && $now < $cat['available_until']) {
-            $current_category = $cat;
-            break;
+            if ($cat['priority'] >= $priority) {
+                $current_category = $cat;
+                $priority = $cat['priority'];
+            }
         }
     }
     // if no category has been made available

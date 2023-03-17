@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           array(
              'title'=>$_POST['title'],
              'description'=>$_POST['description'],
+             'priority'=>$_POST['priority'],
              'exposed'=>$_POST['exposed'],
              'available_from'=>strtotime($_POST['available_from']),
              'available_until'=>strtotime($_POST['available_until'])
