@@ -76,7 +76,7 @@ echo '
                         echo '
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'home">',lang_get('home'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'challenges">',lang_get('challenges'),'</a></li>
-                            <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'hints">',lang_get('hints'),'</a></li>
+                            <!--<li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'hints">',lang_get('hints'),'</a></li>-->
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'scores">',lang_get('scores'),'</a></li>
                             <li><a href="',Config::get('MELLIVORA_CONFIG_SITE_URL'),'profile">',lang_get('profile'),'</a></li>
                             ',dynamic_menu_content(),'
