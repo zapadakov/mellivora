@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email,
             $password,
             $_POST['team_name'],
-            $_POST['country'],
-            array_get($_POST, 'type')
+            $_POST['country']/*,
+            array_get($_POST, 'type')*/
         )) {
             if (login_create($email, $password, false)) {
                 redirect($redirect_url);

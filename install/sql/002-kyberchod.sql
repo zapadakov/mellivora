@@ -1,7 +1,7 @@
-ALTER TABLE countries MODIFY COLUMN country_name VARCHAR(100);
-ALTER TABLE countries MODIFY COLUMN country_code VARCHAR(20);
 ALTER TABLE users ADD COLUMN full_name VARCHAR(255);
 
+ALTER TABLE countries MODIFY COLUMN country_name VARCHAR(100);
+ALTER TABLE countries MODIFY COLUMN country_code VARCHAR(20);
 INSERT INTO countries (id, country_name, country_code) VALUES
 (1, 'Czech Republic', 'cz'),
 (2, 'Vyšší odborná škola, Obchodní akademie a Střední zdravotnická škola, Domažlice', 'oadomazlice'),
@@ -25,4 +25,20 @@ INSERT INTO countries (id, country_name, country_code) VALUES
 (20, 'Církevní gymnázium Plzeň', 'cg-plzen'),
 (21, 'Soukromá Střední odborná škola a Gymnázium BEAN, s.r.o.', 'ssbean'),
 (22, 'Gymnázium Františka Křižíka a základní škola, s.r.o.', 'krizik'),
-(23, 'Střední škola zemědělská a potravinářská, Klatovy', 'sszpkt');
+(23, 'Střední škola zemědělská a potravinářská, Klatovy', 'sszpkt'),
+(24, 'Vyšší odborná škola a Střední průmyslová škola elektrotechnická, Plzeň (VOŠ)', 'vos.spseplzen'),
+(25, 'Vyšší odborná škola zdravotnická, managementu a veřejnosprávních studií, s.r.o.', 'vosplzen'),
+(26, 'Školy Březová', 'skolybrezova'),
+(27, 'Západočeská univerzita', 'zcu'),
+(28, "Smíchovská střední průmyslová škola a gymnázium", "ssps"),
+(29, "Gymnázium JSK", "4b7962657243686f647b4357452d3432357d");
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+ALTER TABLE categories ADD COLUMN discord_id BIGINT DEFAULT 0;
+ALTER TABLE challenges ADD COLUMN discord_id BIGINT DEFAULT 0;
+ALTER TABLE users ADD COLUMN discord_id BIGINT DEFAULT 0;
+ALTER TABLE user_types ADD COLUMN discord_id BIGINT DEFAULT 0;
+
+ALTER TABLE categories ADD COLUMN priority tinyint(3) unsigned NOT NULL DEFAULT 0;
+
+ALTER TABLE user_types ADD COLUMN score_required int(6) signed NOT NULL DEFAULT '-1';

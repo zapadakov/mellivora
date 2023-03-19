@@ -36,13 +36,11 @@ form_input_text('Full name', $user['full_name'], array('disabled'=>false), lang_
 $opts = db_query_fetch_all('SELECT * FROM countries ORDER BY country_name ASC');
 form_select($opts, 'Country', 'id', $user['country_id'], 'country_name', '', lang_get('country'));
 
-$user_types = db_select_all('user_types', array('id', 'title'));
-if (!empty($user_types)) {
-    form_select($user_types, 'Type', 'id', $user['user_type'], 'title', '', lang_get('select_team_type'));
+if($user['user_type'] > 0) {
+    form_input_checkbox('Non competitor', ($user['competing'] ? 0 : 1), lang_get('non_competitor'));
 }
 
 form_input_text('Discord ID', $user['discord_id']);
-
 form_hidden('action', 'edit');
 form_button_submit(lang_get('save_changes'));
 form_end();

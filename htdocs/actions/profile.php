@@ -13,33 +13,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($_POST['action'] == 'edit') {
 
-        $competing = (($_POST['type'] == 1) ? 1 : 0);
-        $user_type = (($_POST['type'] > 0) ? $_POST['type'] : 0);
+        //set the user type and competing status for the user with at least one correct submission
+        if($user = get_user_with_score($_SESSION['id'])) {
 
-        if (strlen($_POST['discord_id']) == 18) {
+            $user['competing'] = ($_POST['non_competitor'] == 1) ? 0 : 1;
+
+            db_update(
+                'users',
+                array(
+                   'competing'=>$user['competing']
+                ),
+                array(
+                   'id'=>$_SESSION['id']
+                )
+              );
+            
+            $user_id = $user['user_id'];
+            $user_type = check_user_type($user);
+        }
+        //set the user type = 0 otherwise
+        else {
 
             $user = db_select_one(
                 'users',
                 array(
+                    'id',
                     'team_name',
                     'user_type'
                 ),
                 array('id'=>$_SESSION['id'])
             );
-            $user_types = db_select_all(
-                'user_types',
-                array(
-                    'id',
-                    'discord_id'
-                )
-            );
+
+            $user_id = $user['id'];
+            $user_type = array('before' => $user['user_type'], 'after' => 0);
+        }
+
+        if($user_type['before'] != $user_type['after']) {
+
+            update_user_type($user_id, $user_type['after']);
+        }
+
+        //link Discord account and set Discord ID if successful
+        if (strlen($_POST['discord_id']) == 18) {
+
             $discord_user = link_discord_account(
                 $_POST['discord_id'],
                 $user['team_name'],
-                $user['user_type'],
-                $user_type,
-                $user_types
+                $user_type['before'],
+                $user_type['after']
             );
+
             if ($discord_user['id'] != 0) {
                 $solved_challenges = db_query_fetch_all('
                     SELECT
@@ -56,8 +79,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 );
                 unlock_discord_channels($solved_challenges, $discord_user['id']);
             }
+        }
+        else {
 
-        } else {
             $discord_user['id'] = 0;
         }
 
@@ -66,16 +90,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           array(
              'full_name'=>$_POST['full_name'],
              'country_id'=>$_POST['country'],
-             'discord_id'=>$discord_user['id'],
-             'competing'=>$competing,
-             'user_type'=>$user_type
+             'discord_id'=>$discord_user['id']
           ),
           array(
              'id'=>$_SESSION['id']
           )
         );
 
-        redirect('profile?generic_success=1');
+         redirect('profile?generic_success=1');
     }
 
     else if ($_POST['action'] == '2fa_generate') {

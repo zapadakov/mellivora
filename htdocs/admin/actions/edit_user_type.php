@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
              'title'=>$_POST['title'],
              'description'=>$_POST['description'],
              'scoreboard'=>$_POST['scoreboard'],
+             'score_required'=>$_POST['score_required'],
              'discord_id'=>$_POST['discord_id']
           ),
           array(

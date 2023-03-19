@@ -409,6 +409,73 @@ function get_num_participating_users() {
     return $res['num'];
 }
 
+//return users with at least one correct submission
+function get_user_with_score($user_id) {
+    $user = db_query_fetch_one('
+        SELECT
+            u.id AS user_id,
+            u.team_name,
+            u.user_type,
+            u.discord_id,
+            u.competing,
+            SUM(c.points) AS score
+        FROM
+            users AS u
+        LEFT JOIN
+            submissions AS s ON u.id = s.user_id AND s.correct = 1
+        LEFT JOIN
+            challenges AS c ON c.id = s.challenge
+        WHERE
+            u.id = :user_id AND
+            c.exposed = 1
+        GROUP BY
+            u.id',
+        array(
+            'user_id'=>$user_id
+        )
+    );
+    return $user;
+}
+
+function update_user_type($user_id, $user_type) {
+    db_update(
+        'users',
+        array(
+            'user_type'=>$user_type
+        ),
+        array(
+            'id'=>$user_id
+        )
+    );
+}
+
+function check_user_type($user) {
+
+    $types = db_query_fetch_all('SELECT * FROM user_types WHERE score_required >= 0 ORDER BY score_required DESC');
+
+    foreach($types as $type) {
+
+        if (($user['competing']) and ($user['score'] >= $type['score_required']) and ($type['id'] != CONST_NON_COMPETITORS_CATEGORY)) {
+
+            return array(
+                'before'=>$user['user_type'],
+                'after'=>$type['id']
+            );
+        }
+        elseif (!($user['competing']) and ($user['score'] >= $type['score_required']) and ($type['id'] == CONST_NON_COMPETITORS_CATEGORY)) {
+
+            return array(
+                'before'=>$user['user_type'],
+                'after'=>$type['id']
+            );
+        }
+    }
+    return array(
+        'before'=>$user['user_type'],
+        'after'=>0
+    );
+}
+
 function check_server_configuration() {
     check_server_and_db_time();
     check_server_writable_dirs();

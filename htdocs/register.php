@@ -27,7 +27,7 @@ if (Config::get('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED')) {
         <input name="',md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'USR'),'" type="email" class="form-control" placeholder="'.lang_get('email_address').'" id="register-email-input" required />
         ',(!Config::get('MELLIVORA_CONFIG_ACCOUNTS_EMAIL_PASSWORD_ON_SIGNUP') ? '<input name="'.md5(Config::get('MELLIVORA_CONFIG_SITE_NAME').'PWD').'" type="password" class="form-control" placeholder="'.lang_get('password').'" id="register-password-input" required />' : '');
 
-    if (cache_start(CONST_CACHE_NAME_REGISTER, Config::get('MELLIVORA_CONFIG_CACHE_TIME_REGISTER'))) {
+    if (cache_start(CONST_CACHE_NAME_REGISTER, Config::get('MELLIVORA_CONFIG_CACHE_TIME_REGISTER'))) {/*
         $user_types = db_select_all(
             'user_types',
             array(
@@ -46,7 +46,7 @@ if (Config::get('MELLIVORA_CONFIG_ACCOUNTS_SIGNUP_ALLOWED')) {
             }
 
             echo '</select>';
-        }
+        }*/
 
         country_select();
         cache_end(CONST_CACHE_NAME_REGISTER);

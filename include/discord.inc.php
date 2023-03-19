@@ -126,8 +126,15 @@ function get_discord_member($discord_user_id) {
     }
 }
 
-function link_discord_account($discord_user_id, $nick, $user_type_old, $user_type_new, $user_types) {
+function link_discord_account($discord_user_id, $nick, $user_type_old, $user_type_new) {
     if (Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN') && Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID')) {
+        $user_types = db_select_all(
+            'user_types',
+            array(
+                'id',
+                'discord_id'
+            )
+        );
         try {
             $client = new DiscordClient(['token' => Config::get('MELLIVORA_CONFIG_DISCORD_BOT_TOKEN')]);
 
@@ -149,6 +156,7 @@ function link_discord_account($discord_user_id, $nick, $user_type_old, $user_typ
                     ));
                     //link user_type to discord role
                     foreach($user_types as $user_type) {
+                        //if both old and new user type are the same, default action is addGuildMemberRole
                         if(($user_type_new == $user_type['id']) && ($user_type['discord_id'] > 0)) {
                             $client->guild->addGuildMemberRole(array(
                                 'guild.id' => Config::get('MELLIVORA_CONFIG_DISCORD_GUILD_ID'),
@@ -195,7 +203,6 @@ function send_discord_message($type, $content) {
                     'content' => lang_get(
                         'new_solver',
                         array(
-                            'role' => $content['role'],
                             'user' => $content['user'],
                             'challenge_id' => $content['challenge_id'],
                             'challenge_title' => $content['challenge_title']
@@ -210,7 +217,6 @@ function send_discord_message($type, $content) {
                     'content' => lang_get(
                         'new_submission',
                         array(
-                            'role' => $content['role'],
                             'user' => $content['user'],
                             'num_attempts' => $content['num_attempts'],
                             'challenge_title' => $content['challenge_title'],
@@ -227,7 +233,6 @@ function send_discord_message($type, $content) {
                     'content' => lang_get(
                         'new_registration',
                         array(
-                            'role' => $content['role'],
                             'user' => $content['user'],
                             'email' => $content['email'],
                             'ip' => $content['ip']
@@ -242,7 +247,6 @@ function send_discord_message($type, $content) {
                     'content' => lang_get(
                         'activity',
                         array(
-                            'role' => $content['role'],
                             'user' => $content['user'],
                             'email' => $content['email'],
                             'full_name' => $content['full_name'],

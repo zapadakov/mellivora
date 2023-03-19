@@ -315,7 +315,6 @@ function update_user_last_active_time($user_id) {
             array(
                 'email',
                 'team_name',
-                'competing',
                 'discord_id',
                 'full_name'
             ),
@@ -326,7 +325,6 @@ function update_user_last_active_time($user_id) {
         send_discord_message(
             'activity',
             array(
-                'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
                 'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
                 'email' => $user['email'],
                 'full_name' => $user['full_name'],
@@ -463,7 +461,7 @@ function register_account($email, $password, $team_name, $country, $type = null)
     if (empty($email) || empty($password) || empty($team_name)) {
         message_error(lang_get('please_fill_details_correctly'));
     }
-
+/*
     $num_types = db_select_one(
         'user_types',
         array('COUNT(*) AS num')
@@ -472,7 +470,7 @@ function register_account($email, $password, $team_name, $country, $type = null)
     if (!isset($type) || !is_valid_id($type) || $type > $num_types['num']) {
         message_error(lang_get('please_supply_category'));
     }
-
+*/
     if (strlen($team_name) > Config::get('MELLIVORA_CONFIG_MAX_TEAM_NAME_LENGTH') || strlen($team_name) < Config::get('MELLIVORA_CONFIG_MIN_TEAM_NAME_LENGTH')) {
         message_error('team_name_too_long_or_short');
     }
@@ -506,12 +504,12 @@ function register_account($email, $password, $team_name, $country, $type = null)
     if ($user['id']) {
         message_error(lang_get('user_already_exists'));
     }
-
+/*
     $competing = 0;
     if($_POST['type'] == 1) {
         $competing = 1;
     }
-
+*/
     $user_id = db_insert(
         'users',
         array(
@@ -520,9 +518,9 @@ function register_account($email, $password, $team_name, $country, $type = null)
             'download_key'=>hash('sha256', generate_random_string(128)),
             'team_name'=>$team_name,
             'added'=>time(),
-            'enabled'=>(Config::get('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ? '1' : '0'),
+            'enabled'=>(Config::get('MELLIVORA_CONFIG_ACCOUNTS_DEFAULT_ENABLED') ? '1' : '0'),/*
             'competing'=>$competing,
-            'user_type'=>(isset($type) ? $type : 0),
+            'user_type'=>(isset($type) ? $type : 0),*/
             'country_id'=>$country
         )
     );
@@ -553,7 +551,6 @@ function register_account($email, $password, $team_name, $country, $type = null)
         send_discord_message(
             'new_registration',
             array(
-                'role' => ($competing == 1 ? lang_get("competitor") : lang_get("non_competitor")),
                 'user' => $team_name,
                 'email' => $email,
                 'ip' => get_ip(false)

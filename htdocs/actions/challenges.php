@@ -131,29 +131,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             )
         );
 
-        $user = db_select_one(
-            'users',
-            array(
-                'discord_id',
-                'team_name',
-                'competing'
-            ),
-            array(
-                'id' => $_SESSION['id']
-            )
-        );
-        
         if ($correct) {
+            
+            $user = get_user_with_score($_SESSION['id']);
+
+            //update user type if needed
+            $user_type = check_user_type($user);
+
+            if($user_type['before'] != $user_type['after']) {
+
+                update_user_type($user['user_id'], $user_type['after']);
+
+                if (($user['discord_id'] != 0) and ($user_type['after'] > 0)) {
+                    $discord_user = link_discord_account($user['discord_id'], $user['team_name'], $user_type['before'], $user_type['after']);
+                }
+            }
+            
             //unlock related Discord channel in case of correct submission (if the channel exists)
             if (($user['discord_id'] != 0) and ($challenge['discord_id'] != 0)) {
                 unlock_discord_channels(array(array('discord_id'=>$challenge['discord_id'])), $user['discord_id']);
             }
+            
             //send congrat to Discord ctf channel
             //if ($user['competing'] == 1) {
                 send_discord_message(
                     'new_solver',
                     array(
-                        'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
                         'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
                         'challenge_id' => $_POST['challenge'],
                         'challenge_title' => $challenge['title']
@@ -161,12 +164,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 );
             //}
         }
+        
+        else {
+            $user = db_select_one(
+                'users',
+                array(
+                    'discord_id',
+                    'team_name'
+                ),
+                array(
+                    'id' => $_SESSION['id']
+                )
+            );
+        }
 
         //send submission details to Discord admin channel
         send_discord_message(
             'new_submission',
             array(
-                'role' => ($user['competing'] == 1 ? lang_get("competitor") : lang_get("non_competitor")),
                 'user' => ($user['discord_id'] != 0 ? '<@!'.$user['discord_id'].'>' : $user['team_name']),
                 'num_attempts' => $num_attempts+1,
                 'challenge_title' => $challenge['title'],
