@@ -455,14 +455,14 @@ function check_user_type($user) {
 
     foreach($types as $type) {
 
-        if (($user['competing']) and ($user['score'] >= $type['score_required']) and ($type['id'] != CONST_NON_COMPETITORS_CATEGORY)) {
+        if (($user['competing']) and ($user['score'] >= $type['score_required']) and ($type['id'] != CONST_NON_COMPETITORS_USER_TYPE)) {
 
             return array(
                 'before'=>$user['user_type'],
                 'after'=>$type['id']
             );
         }
-        elseif (!($user['competing']) and ($user['score'] >= $type['score_required']) and ($type['id'] == CONST_NON_COMPETITORS_CATEGORY)) {
+        elseif (!($user['competing']) and ($user['score'] >= $type['score_required']) and ($type['id'] == CONST_NON_COMPETITORS_USER_TYPE)) {
 
             return array(
                 'before'=>$user['user_type'],
