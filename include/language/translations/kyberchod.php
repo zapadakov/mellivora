@@ -45,7 +45,7 @@ $lang['email_password_on_signup'] = 'Heslo bude vygenerováno a zasláno na zada
 
 $lang['register'] = 'Registrace';
 $lang['register_your_team'] = 'Registrace';
-$lang['account_signup_information'] = 'Vítáme všechny zájemce o řešení úloh KyberChod CTF. Soutěžit o ceny mohou jen ti, kdo jsou z Plzeňského kraje a/nebo jsou žáky školy z Plzeňského kraje. Chybí-li škola ve výběru, registruj se pod Czech Republic. Ozvi se pak případně na Discordu nebo e-mailem a školu doplníme. {password_information}';
+$lang['account_signup_information'] = 'Nejsi-li ze školy nebo chybí-li tvá škola ve výběru, registruj se pod Czech Republic. Ozvi se pak případně na Discordu nebo e-mailem a školu doplníme. {password_information}';
 $lang['team_name'] = 'Přezdívka';
 $lang['full_name'] = 'Celé jméno';
 $lang['select_team_type'] = 'Soutěžní kategorie';
@@ -71,7 +71,7 @@ $lang['signup_email_success'] =
     '{signup_email_password}' .
     "\r\n" .
     "\r\n" .
-    'Po přihlášení si v profilu můžeš vyplnit celé jméno. Bude se hodit, pokud bude potřeba ověřit tvůj status žáka ve škole.' .
+    'Po přihlášení si v profilu můžeš vyplnit celé jméno. Bude se hodit, pokud by bylo potřeba ověřit tvůj status žáka ve škole.' .
     "\r\n" .
     "\r\n" .
     'Máš-li účet na Discordu, rádi tě přivítáme na našem serveru: https://discord.gg/PQ5Mypjhhd' .
