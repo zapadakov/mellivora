@@ -23,7 +23,9 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
             'title',
             'scoreboard',
             'badge'
-        )
+        ),
+        null,
+        'score_required'
     );
 
     // no user types
