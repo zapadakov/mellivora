@@ -21,7 +21,8 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
         array(
             'id',
             'title',
-            'scoreboard'
+            'scoreboard',
+            'badge'
         )
     );
 
@@ -75,8 +76,10 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
 
                 $scores = db_query_fetch_all('
                     SELECT
+                        ut.badge AS user_type_badge,
                         u.id AS user_id,
                         u.team_name,
+                        u.discord_id,
                         co.id AS country_id,
                         co.country_name,
                         co.country_code,
@@ -84,6 +87,8 @@ if (cache_start(CONST_CACHE_NAME_SCORES, Config::get('MELLIVORA_CONFIG_CACHE_TIM
                         MAX(s.added) AS tiebreaker
                     FROM
                         users AS u
+                    LEFT JOIN
+                        user_types AS ut ON ut.id = u.user_type
                     LEFT JOIN
                         countries AS co ON co.id = u.country_id
                     LEFT JOIN

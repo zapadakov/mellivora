@@ -42,3 +42,5 @@ ALTER TABLE user_types ADD COLUMN discord_id BIGINT DEFAULT 0;
 ALTER TABLE categories ADD COLUMN priority tinyint(3) unsigned NOT NULL DEFAULT 0;
 
 ALTER TABLE user_types ADD COLUMN score_required int(6) signed NOT NULL DEFAULT '-1';
+
+ALTER TABLE user_types ADD COLUMN badge VARCHAR(255);

@@ -22,6 +22,7 @@ form_textarea('Description', $user_type['description']);
 form_input_checkbox('Scoreboard', $user_type['scoreboard']);
 form_input_text('Score Required', $user_type['score_required']);
 form_input_text('Discord ID', $user_type['discord_id']);
+form_input_text('Badge', $user_type['badge']);
 form_hidden('action', 'edit');
 form_hidden('id', $_GET['id']);
 form_button_submit('Save changes');

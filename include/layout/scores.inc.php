@@ -27,6 +27,7 @@ function scoreboard ($scores) {
                 ',htmlspecialchars($score['team_name']),'
               </span>
             </a>
+            ',($score['user_type_badge'] ? $score['discord_id'] ? '<img src="img/badge_'.$score['user_type_badge'].'.png"/>' : '' : ''),'
           </td>
           <td class="text-center">
             ',country_flag_link($score['country_name'], $score['country_code']),'

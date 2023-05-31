@@ -16,6 +16,7 @@ echo '
           <th>Title</th>
           <th>Description</th>
           <th>Score required<br></th>
+          <th>Badge</th>
           <th>Members</th>
           <th></th>
         </tr>
@@ -29,6 +30,7 @@ $types = db_query_fetch_all('
     ut.title,
     ut.description,
     ut.score_required,
+    ut.badge,
     COUNT(u.id) AS members
   FROM
     user_types AS ut
@@ -48,6 +50,7 @@ foreach($types as $type) {
         <td>',htmlspecialchars($type['title']),'</td>
         <td>',short_description($type['description'], 50),'</td>
         <td>',htmlspecialchars($type['score_required']),'</td>
+        <td>',htmlspecialchars($type['badge']),'</td>
         <td>',htmlspecialchars($type['members']),'</td>
         <td><a href="edit_user_type.php?id=',htmlspecialchars($type['id']), '" class="btn btn-xs btn-primary">Edit</a></td>
     </tr>
