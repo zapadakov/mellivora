@@ -49,7 +49,9 @@ if (cache_start(CONST_CACHE_NAME_CHALLENGE . $_GET['id'], Config::get('MELLIVORA
             'id',
             'title',
             'scoreboard'
-        )
+        ),
+        null,
+        'score_required DESC'
     );
 
     // no user types
