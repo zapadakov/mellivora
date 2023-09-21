@@ -32,6 +32,13 @@ INSERT INTO countries (id, country_name, country_code) VALUES
 (27, 'Západočeská univerzita', 'zcu'),
 (28, "Smíchovská střední průmyslová škola a gymnázium", "ssps"),
 (29, "Gymnázium JSK", "4b7962657243686f647b4357452d3432357d");
+(30, "Střední škola technická a dopravní Gustava Habrmana Česká Třebová", "vda");
+(31, "Střední škola informačních technologií, s.r.o. (SŠINFOTECH)", "ssinfotech");
+(32, "Střední průmyslová škola a Střední odborná škola Dvůr Králové nad Labem", "sposdk");
+(33, "Gymnázium J. S. Machara", "gbl");
+(34, "Střední průmyslová škola elektrotechnická, Praha 10, V Úžlabině 320", "uzlabina");
+(35, "Střední škola informatiky, poštovnictví a finančnictví Brno", "cichnovabrno");
+(36, "Matematicko-fyzikální fakulta Univerzity Karlovy", "mffcuni");
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 ALTER TABLE categories ADD COLUMN discord_id BIGINT DEFAULT 0;
