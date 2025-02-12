@@ -1,6 +1,12 @@
 body {
     background-color: #345;
     color: #abc;
+    background-image: url("../img/kyberchodai.jpg");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    opacity: 0.9;
+    height: 100%;
 }
 
 body a {
