@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         //link Discord account and set Discord ID if successful
-        if (strlen($_POST['discord_id']) == 18) {
+        if (strlen($_POST['discord_id']) >= 17) {
 
             $discord_user = link_discord_account(
                 $_POST['discord_id'],
